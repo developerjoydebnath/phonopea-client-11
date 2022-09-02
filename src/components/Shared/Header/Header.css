@@ -1,0 +1,39 @@
+.header{
+    background-color: rgba(131, 183, 53, 1);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+.activeBottom{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    margin-right: 20px;
+    background: rgb(77, 148, 19);
+    text-align: center;
+    border-radius: 25px;
+    padding: 3px 10px;
+    font-size: 18px;
+    position: relative;
+}
+.activeBottom:hover{
+    color: #ffffff;
+}
+.bottomBorder{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin-right: 20px;
+    padding: 3px;
+    font-size: 18px;
+    position: relative;
+}
+.bottomBorder:hover{
+    color: #ffffff;
+}
+
+.userImg{
+    cursor: pointer;
+    height: 30px;
+    border-radius: 50%;
+}
+

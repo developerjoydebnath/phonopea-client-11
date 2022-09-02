@@ -1,0 +1,41 @@
+
+.icon-container{
+    width: 125px;
+}
+.delete-btn{
+    border: none;
+    outline: none;
+    background: rgba(255, 0, 0, 0.823);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.delete-icon{
+    margin: 0 0 2px 2px;
+}
+.see-more-btn{
+    border: none;
+    outline: none;
+    background: rgb(10, 225, 253);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.see-more-icon{
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+.edit-btn{
+    border: none;
+    outline: none;
+    background: rgb(9, 255, 0);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.edit-icon{
+    margin: 0 0 3px 2px;
+}
