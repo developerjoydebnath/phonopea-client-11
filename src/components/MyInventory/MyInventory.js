@@ -2,7 +2,7 @@ import { Alert, Button, Tooltip } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { ImBin } from "react-icons/im";
@@ -60,7 +60,7 @@ const MyInventory = () => {
                                 myItems.map(item => <ListGroup.Item key={item._id}>
                                     <div className='d-flex justify-content-between'>
                                         <div>
-                                            {i++}.  {item?.name}
+                                            {i++}.  <Link className='text-black text-decoration-none' to={`/phoneDetails/${item?._id}`}>{item?.name}</Link>
                                         </div>
                                         <div>
                                             <div className='icon-container'>

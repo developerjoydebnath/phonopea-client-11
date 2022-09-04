@@ -19,14 +19,14 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/home' element={<Home />} />
-        <Route path='/phoneDetails/:id' element={<PhoneDetails />} />
+        <Route path='/phoneDetails/:id' element={<RequireAuth><PhoneDetails /></RequireAuth>} />
         <Route path='/phones' element={<Phones />} />
         <Route path='/addPhone' element={<RequireAuth><AddPhone /></RequireAuth>} />
-        <Route path='/manageInventory' element={<ManageInventory />} />
+        <Route path='/manageInventory' element={<RequireAuth><ManageInventory /></RequireAuth>} />
         <Route path='/login' element={<SignIn></SignIn>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
-        <Route path='/myInventory' element={<MyInventory></MyInventory>}></Route>
-        <Route path='/profile' element={<MyProfile/>}></Route>
+        <Route path='/myInventory' element={<RequireAuth><MyInventory /></RequireAuth>}></Route>
+        <Route path='/profile' element={<RequireAuth><MyProfile/></RequireAuth>}></Route>
       </Routes>
     </div>
   );

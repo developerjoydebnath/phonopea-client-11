@@ -5,6 +5,7 @@ import usePhones from '../../hooks/usePhones';
 import { HiOutlinePlusSm } from "react-icons/hi";
 import { ImBin } from "react-icons/im";
 import { FiEdit } from "react-icons/fi";
+import { FaArrowRight } from "react-icons/fa";
 import { CgDetailsMore } from "react-icons/cg";
 import './ManageInventory.css';
 import { Alert, Tooltip } from '@mui/material';
@@ -49,8 +50,9 @@ const ManageInventory = () => {
                         </div>
                     </div> :
                     <div className="mt-3">
-                        <div>
+                        <div className='d-flex justify-content-between'>
                             <Link to="/addPhone" className='btn btn-success mb-3'>Add New Item <HiOutlinePlusSm /> </Link>
+                            <Link to="/myInventory" className='btn btn-success mb-3'>My Inventory <FaArrowRight /> </Link>
                         </div>
                         <ListGroup>
                             {
