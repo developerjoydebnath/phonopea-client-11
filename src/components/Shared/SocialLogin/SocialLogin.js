@@ -4,6 +4,7 @@ import googleLogo from '../../../images/socialIcon/google.png'
 import facebookLogo from '../../../images/socialIcon/facebook.png'
 import githubLogo from '../../../images/socialIcon/github.png'
 import { useLocation, useNavigate } from 'react-router-dom';
+import './SocialLogin.css';
 
 
 const SocialLogin = () => {
@@ -26,9 +27,9 @@ const SocialLogin = () => {
                 <div className='or-text'>or</div>
                 <div className='or-divider'></div>
             </div>
-            <button onClick={() => signInWithGoogle()} className="btnGroup bg-white"><img className='social-logo' src={googleLogo} alt="" /> <span>Continue with Google</span></button> <br />
-            <button onClick={() => signInWithFacebook()} className="btnGroup bg-white"><img className='social-logo' src={facebookLogo} alt="" /> <span>Continue with Facebook</span></button> <br />
-            <button onClick={() => signInWithGithub()} className="btnGroup bg-white"><img className='social-logo' src={githubLogo} alt="" /> <span>Continue with Github</span></button>
+            <button onClick={() => signInWithGoogle()} className="btnGroup"><img className='social-logo' src={googleLogo} alt="" /> <span>Continue with Google</span></button> <br />
+            <button onClick={() => signInWithFacebook()} className="btnGroup"><img className='social-logo' src={facebookLogo} alt="" /> <span>Continue with Facebook</span></button> <br />
+            <button onClick={() => signInWithGithub()} className="btnGroup"><img className='social-logo' src={githubLogo} alt="" /> <span>Continue with Github</span></button>
         </div>
     );
 };

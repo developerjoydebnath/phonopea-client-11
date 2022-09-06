@@ -6,7 +6,6 @@ import auth from '../../../firebase.init';
 import SearchBar from '../../Home/Search/SearchBar/SearchBar';
 import userLogo from '../../../images/header/user.png'
 import './Header.css';
-import { FiLogOut } from "react-icons/fi";
 import { signOut } from 'firebase/auth';
 
 const Header = () => {

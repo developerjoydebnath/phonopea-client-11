@@ -1,0 +1,36 @@
+.or {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.or-divider {
+    height: 1px;
+    width: 150px;
+    background-color: rgb(77, 148, 19);
+}
+
+.or-text {
+    color: rgb(77, 148, 19);
+    margin: 0 10px 5px 10px;
+    font-size: 20px;
+}
+
+.btnGroup {
+    background-image: linear-gradient(rgba(131, 183, 53, 1), rgb(77, 148, 19));
+    color: white;
+    outline: none;
+    border-radius: 25px;
+    margin-top: 10px;
+    border: none;
+    font-weight: 500;
+    width: 300px;
+    height: 35px;
+}
+
+.social-logo {
+    height: 30px;
+    background-color: #fff;
+    padding: 1px;
+    border-radius: 50%;
+}

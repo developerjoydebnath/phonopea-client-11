@@ -8,13 +8,13 @@ const usePhones = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const {data} = await axios.get(`http://localhost:5000/phones`)
+            const { data } = await axios.get(`https://warehouse-manager-258000.herokuapp.com/phones`)
             setPhones(data);
             data && setLoading(false);
         }
         fetchData();
     }, []);
-    return {phones, setPhones, loading};
+    return { phones, setPhones, loading };
 }
 
 export default usePhones;

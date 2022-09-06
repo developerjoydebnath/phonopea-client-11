@@ -1,0 +1,11 @@
+/* .update-pass{
+    position: relative;
+    z-index: 1;
+} */
+.visible-icon{
+    /* position: absolute; */
+    /* right: 22px;
+    top: 0px; */
+    font-size: 22px;
+    cursor: pointer;
+}

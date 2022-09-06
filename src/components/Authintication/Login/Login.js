@@ -18,18 +18,12 @@ import { useEffect } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { async } from '@firebase/util';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" to="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
+            <SocialLogin />
         </Typography>
     );
 }
@@ -37,6 +31,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
+    const [checked, setChecked] = useState(false);
     const [resetEmail, setResetEmail] = useState({ value: '', error: '' });
     const [loginError, setLoginError] = useState('');
     const [open, setOpen] = React.useState(false);
@@ -104,6 +99,17 @@ export default function SignIn() {
         }
     }
 
+    const showPassword = e => {
+        console.log(e.target.parentElement.children[1].children[1].children[0].type)
+        setChecked(!checked);
+        if (e.target.parentElement.children[1].children[1].children[0].type === 'password') {
+            e.target.parentElement.children[1].children[1].children[0].type = 'text'
+        }
+        else {
+            e.target.parentElement.children[1].children[1].children[0].type = 'password'
+        }
+    }
+
     return (
         <>
             <ThemeProvider theme={theme}>
@@ -158,6 +164,8 @@ export default function SignIn() {
                                 id="password"
                                 autoComplete="current-password"
                             />
+                            <input type="checkbox" onClick={showPassword} name="showPass" id="showPass" />
+                            {checked ? <label className='ms-1 mb-1' htmlFor="showPass"> Hide password</label> : <label className='ms-1 mb-1' htmlFor="showPass"> Show password</label>}
                             <Button
                                 type="submit"
                                 fullWidth
@@ -211,7 +219,6 @@ export default function SignIn() {
                     </Dialog>
                 </Container>
             </ThemeProvider>
-            <SocialLogin />
         </>
     );
 }

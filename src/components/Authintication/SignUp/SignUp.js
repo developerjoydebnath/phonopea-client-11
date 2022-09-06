@@ -37,6 +37,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+    const [checked, setChecked] = useState(false);
     const [agree, setAgree] = useState(false);
     const [notAgree, setNotAgree] = useState('');
     const [displayName, setDisplayName] = useState({ value: '', error: '' });
@@ -102,7 +103,10 @@ export default function SignUp() {
 
     const confirmPasswordBlur = (event) => {
         const confirmPasswordValue = event.target.value;
-        if (confirmPasswordValue === password.value) {
+        if (password.value === '') {
+            setConfirmPassword({ value: '', error: '' });
+        }
+        else if (confirmPasswordValue === password.value) {
             setConfirmPassword({ value: confirmPasswordValue, error: '' });
         }
         else {
@@ -142,6 +146,19 @@ export default function SignUp() {
 
 
     };
+
+    const showPassword = e => {
+        console.log(e.target.parentElement.parentElement.children[2].children[0].children[1].children[0].type)
+        setChecked(!checked);
+        if (e.target.parentElement.parentElement.children[2].children[0].children[1].children[0].type && e.target.parentElement.parentElement.children[3].children[0].children[1].children[0].type === 'password') {
+            e.target.parentElement.parentElement.children[2].children[0].children[1].children[0].type = 'text'
+            e.target.parentElement.parentElement.children[3].children[0].children[1].children[0].type = 'text'
+        }
+        else {
+            e.target.parentElement.parentElement.children[2].children[0].children[1].children[0].type = 'password'
+            e.target.parentElement.parentElement.children[3].children[0].children[1].children[0].type = 'password'
+        }
+    }
 
 
 
@@ -229,6 +246,10 @@ export default function SignUp() {
                                 {
                                     confirmPassword.error && <p className='error-msg'>{confirmPassword.error}</p>
                                 }
+                            </Grid>
+                            <Grid className='container mt-2 ms-1'>
+                                <input type="checkbox" onClick={showPassword} name="showPass" id="showPass" />
+                                {checked ? <label className='ms-1' htmlFor="showPass"> Hide password</label> : <label className='ms-1' htmlFor="showPass"> Show password</label>}
                             </Grid>
                             <Grid item xs={12}>
                                 <FormControlLabel className={agree ? 'text-black' : 'text-danger'}
