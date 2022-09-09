@@ -77,7 +77,7 @@ export default function SignIn() {
         const password = formData.get('password')
 
         await signInWithEmailAndPassword(email, password)
-        const { data } = await axios.post('http://localhost:5000/login', { email })
+        const { data } = await axios.post('https://warehouse-manager-258000.herokuapp.com/login', { email })
         console.log(data?.accessToken)
         localStorage.setItem('accessToken', data?.accessToken)
         navigate(from, { replace: true })
@@ -118,7 +118,7 @@ export default function SignIn() {
     return (
         <>
             <ThemeProvider theme={theme}>
-            <PageTitle title='Login' />
+                <PageTitle title='Login' />
                 <Container style={{ position: 'relative', height: '100vh' }} component="main" maxWidth="xs">
                     {
                         loading &&

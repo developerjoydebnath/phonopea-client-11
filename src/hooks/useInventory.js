@@ -9,13 +9,13 @@ const useInventory = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const { data } = await axios.get('http://localhost:5000/allPhone')
+            const { data } = await axios.get('https://warehouse-manager-258000.herokuapp.com/allPhone')
             setAllPhone(data)
             data && setLoading(false);
         }
         fetchData()
     }, [])
-    return { allPhone, setAllPhone , loading }
+    return { allPhone, setAllPhone, loading }
 }
 
 export default useInventory;
