@@ -5,6 +5,7 @@ import { useAuthState, useSendEmailVerification, useUpdateEmail, useUpdatePasswo
 import auth from '../../firebase.init';
 import profile from '../../images/header/user.png'
 import { AiFillEyeInvisible } from "react-icons/ai";
+import PageTitle from '../Shared/PageTitle';
 
 const MyProfile = () => {
     const [user] = useAuthState(auth);
@@ -48,6 +49,7 @@ const MyProfile = () => {
 
     return (
         <div className='container'>
+            <PageTitle title='MyProfile' />
             <div className='row my-5'>
                 <div className='col-12 col-md-6 border'>
                     <h1>this is profile</h1>

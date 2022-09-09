@@ -7,6 +7,7 @@ import { Audio } from 'react-loader-spinner';
 import useSearch from '../../hooks/useSearch';
 import './PhoneDetails.css'
 import { Button } from '@mui/material';
+import PageTitle from '../Shared/PageTitle';
 
 const PhoneDetails = () => {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ const PhoneDetails = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const { data } = await axios.get(`https://warehouse-manager-258000.herokuapp.com/phoneDetails?id=${id}`)
+            const { data } = await axios.get(`http://localhost:5000/phoneDetails?id=${id}`)
             setPhone(data);
         }
         fetchData()
@@ -31,7 +32,7 @@ const PhoneDetails = () => {
             const { quantity, ...rest } = phone;
             const newQuantity = e.target.quantity.value;
             const finalQuantity = { quantity: parseInt(quantity) + parseInt(newQuantity), ...rest }
-            const { data } = await axios.put(`https://warehouse-manager-258000.herokuapp.com/restockItem?id=${id}`, finalQuantity)
+            const { data } = await axios.put(`http://localhost:5000/restockItem?id=${id}`, finalQuantity)
             data.acknowledged && setPhone(finalQuantity)
         }
         else {
@@ -43,12 +44,13 @@ const PhoneDetails = () => {
     const handleDelivery = async () => {
         const { quantity, ...rest } = phone;
         const finalQuantity = { quantity: parseInt(quantity) - 1, ...rest }
-        const { data } = await axios.put(`https://warehouse-manager-258000.herokuapp.com/deliveredItem?id=${id}`, finalQuantity)
+        const { data } = await axios.put(`http://localhost:5000/deliveredItem?id=${id}`, finalQuantity)
         data?.acknowledged && setPhone(finalQuantity)
     }
 
     return (
         <div>
+            <PageTitle title='PhoneDetails' />
             {loading ? (
                 <div className='container' style={{ position: 'relative', height: '100vh' }}>
                     <div style={{ position: 'absolute', top: '30%', left: '40%' }}>

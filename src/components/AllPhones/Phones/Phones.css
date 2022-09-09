@@ -1,0 +1,34 @@
+.page-btn{
+    margin: 20px 10px;
+    border: none;
+
+}
+.selected-page{
+    background-color: rgba(131, 183, 53, 1);
+    color: white;
+    margin: 20px 10px;
+    border: none;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+.next-btn{
+    border: none;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    transition: .2s;
+}
+.next-btn:hover{
+    background: rgba(131, 183, 53, 1);
+}
+.page-size{
+    height: 30px;
+    border: 2px solid rgba(131, 183, 53, 1);
+    outline: 0px;
+    border-radius: 5px;
+    color: rgba(131, 183, 53, 1);
+}
+.products-per-page{
+    font-size: 18px;
+}

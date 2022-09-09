@@ -35,6 +35,7 @@ const RequireAuth = ({ children }) => {
             <div className='border d-inline-block p-5 m-3 bg-warning rounded-3'>
                 <h3 className='text-danger'>Your email is not verified!</h3>
                 <h5 className='mb-3'>Please verify your email first.</h5>
+                <p>Verification email sent to <b>{user.email}</b> </p>
                 <button className='btn btn-primary'
                     onClick={async () => {
                         await sendEmailVerification();

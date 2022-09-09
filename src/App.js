@@ -8,6 +8,7 @@ import Home from './components/Home/Search/Search/Home';
 import ManageInventory from './components/ManageInventory/ManageInventory';
 import MyInventory from './components/MyInventory/MyInventory';
 import MyProfile from './components/MyProfile/MyProfile';
+import PageNotFound from './components/PageNotFound/PageNotFound';
 import PhoneDetails from './components/PhoneDetails/PhoneDetails';
 import RequireAuth from './components/RequireAuth/RequireAuth';
 import Header from './components/Shared/Header/Header';
@@ -27,6 +28,7 @@ function App() {
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='/myInventory' element={<RequireAuth><MyInventory /></RequireAuth>}></Route>
         <Route path='/profile' element={<RequireAuth><MyProfile/></RequireAuth>}></Route>
+        <Route path='*' element={<PageNotFound/>}></Route>
       </Routes>
     </div>
   );

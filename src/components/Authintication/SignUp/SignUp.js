@@ -20,6 +20,7 @@ import { signOut } from 'firebase/auth';
 import { Audio } from 'react-loader-spinner';
 import { useEffect } from 'react';
 import './SignUp.css';
+import PageTitle from '../../Shared/PageTitle';
 
 function Copyright(props) {
     return (
@@ -164,6 +165,7 @@ export default function SignUp() {
 
     return (
         <ThemeProvider theme={theme}>
+            <PageTitle title='Signup' />
             <Container component="main" maxWidth="xs" style={{ position: 'relative', height: '100vh' }}>
                 {
                     loading &&

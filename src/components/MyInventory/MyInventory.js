@@ -10,6 +10,8 @@ import { FiEdit } from "react-icons/fi";
 import { CgDetailsMore } from "react-icons/cg";
 import { HiOutlinePlusSm } from "react-icons/hi";
 import ListGroup from 'react-bootstrap/ListGroup';
+import { signOut } from 'firebase/auth';
+import PageTitle from '../Shared/PageTitle';
 
 const MyInventory = () => {
     const [user] = useAuthState(auth);
@@ -20,8 +22,21 @@ const MyInventory = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const { data } = await axios.get(`https://warehouse-manager-258000.herokuapp.com/myInventory?email=${user?.email}`)
-            setMyitems(data);
+            const url = `http://localhost:5000/myInventory?email=${user?.email}`;
+            try{
+                const { data } = await axios.get( url , {
+                    headers : {
+                        authorization : `Bearer ${localStorage.getItem('accessToken')}`
+                    }
+                })
+                setMyitems(data);
+            }
+            catch(err){
+                if(err.response.status === 401 || err.response.status === 403){
+                    signOut(auth);
+                    navigate('/login');
+                }
+            }
         }
         fetchData()
     }, [user?.email])
@@ -30,7 +45,7 @@ const MyInventory = () => {
         const agree = window.confirm('are you sure , you want to delete this item ?')
         if (agree) {
             console.log('done')
-            const { data } = await axios.delete(`https://warehouse-manager-258000.herokuapp.com/deleteItem?id=${id}`);
+            const { data } = await axios.delete(`http://localhost:5000/deleteItem?id=${id}`);
             if (data?.deletedCount === 1) {
                 const rest = myItems.filter(phone => phone._id !== id)
                 setMyitems(rest);
@@ -47,6 +62,7 @@ const MyInventory = () => {
 
     return (
         <div className='container'>
+            <PageTitle title='MyInventory' />
             <h3 className='text-center mt-3 bg-warning py-3'>My Inventory</h3>
             {deleted && <Alert className='mt-1' severity="success">Item successfully deleted!</Alert>}
             {

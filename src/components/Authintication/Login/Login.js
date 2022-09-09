@@ -19,6 +19,8 @@ import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
+import axios from 'axios';
+import PageTitle from '../../Shared/PageTitle';
 
 function Copyright(props) {
     return (
@@ -65,17 +67,20 @@ export default function SignIn() {
     }, [error, resetPassError, sending])
 
     if (user) {
-        navigate(from, { replace: true })
+        // navigate(from, { replace: true })
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        const email = data.get('email')
-        const password = data.get('password')
+        const formData = new FormData(event.currentTarget);
+        const email = formData.get('email')
+        const password = formData.get('password')
 
         await signInWithEmailAndPassword(email, password)
-
+        const { data } = await axios.post('http://localhost:5000/login', { email })
+        console.log(data?.accessToken)
+        localStorage.setItem('accessToken', data?.accessToken)
+        navigate(from, { replace: true })
     };
 
 
@@ -113,6 +118,7 @@ export default function SignIn() {
     return (
         <>
             <ThemeProvider theme={theme}>
+            <PageTitle title='Login' />
                 <Container style={{ position: 'relative', height: '100vh' }} component="main" maxWidth="xs">
                     {
                         loading &&

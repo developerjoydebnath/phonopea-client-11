@@ -7,10 +7,12 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import './Home.css'
 import ShortPhone from '../../ShortPhone/ShortPhone';
+import PageTitle from '../../../Shared/PageTitle';
 
 const Home = () => {
     return (
         <div className='container'>
+            <PageTitle title='Home' />
             <div className="slider mt-4">
                 <Carousel autoPlay={true} interval={3000} infiniteLoop={true}>
                     <div className="slider-img">

@@ -1,19 +1,22 @@
 import axios from "axios";
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 
-const usePhones = () => {
+const usePhones = ({page, size}) => {
+    console.log(page, size)
     const [phones, setPhones] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
-            const { data } = await axios.get(`https://warehouse-manager-258000.herokuapp.com/phones`)
+            const url = `http://localhost:5000/phones?page=${page}&size=${size}`;
+            const { data } = await axios.get(url);
             setPhones(data);
             data && setLoading(false);
         }
         fetchData();
-    }, []);
+    }, [page, size]);
+    
     return { phones, setPhones, loading };
 }
 

@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Audio } from 'react-loader-spinner';
-import usePhones from '../../hooks/usePhones';
 import { HiOutlinePlusSm } from "react-icons/hi";
 import { ImBin } from "react-icons/im";
 import { FiEdit } from "react-icons/fi";
@@ -11,10 +10,12 @@ import './ManageInventory.css';
 import { Alert, Tooltip } from '@mui/material';
 import axios from 'axios';
 import { useState } from 'react';
+import PageTitle from '../Shared/PageTitle';
+import useInventory from '../../hooks/useInventory';
 
 const ManageInventory = () => {
     const navigate = useNavigate();
-    const { phones, setPhones, loading } = usePhones();
+    const { allPhone, setAllPhone, loading } = useInventory();
     const [deleted, setDeleted] = useState(false);
     let i = 1;
 
@@ -22,10 +23,10 @@ const ManageInventory = () => {
         const agree = window.confirm('are you sure , you want to delete this item ?')
         if (agree) {
             console.log('done')
-            const { data } = await axios.delete(`https://warehouse-manager-258000.herokuapp.com/deleteItem?id=${id}`);
+            const { data } = await axios.delete(`http://localhost:5000/deleteItem?id=${id}`);
             if (data?.deletedCount === 1) {
-                const rest = phones.filter(phone => phone._id !== id)
-                setPhones(rest);
+                const rest = allPhone.filter(phone => phone._id !== id)
+                setAllPhone(rest);
                 setDeleted(true)
                 setTimeout(() => {
                     setDeleted(false)
@@ -36,6 +37,7 @@ const ManageInventory = () => {
 
     return (
         <div className='container'>
+            <PageTitle title='ManageInventory' />
             {deleted && <Alert className='mt-1' severity="success">Item successfully deleted!</Alert>}
             {
                 loading ?
@@ -49,14 +51,14 @@ const ManageInventory = () => {
                             />
                         </div>
                     </div> :
-                    <div className="mt-3">
+                    <div className="mt-3 mb-5">
                         <div className='d-flex justify-content-between'>
                             <Link to="/addPhone" className='btn btn-success mb-3'>Add New Item <HiOutlinePlusSm /> </Link>
                             <Link to="/myInventory" className='btn btn-success mb-3'>My Inventory <FaArrowRight /> </Link>
                         </div>
                         <ListGroup>
                             {
-                                phones.map(phone =>
+                                allPhone.map(phone =>
                                     <ListGroup.Item key={phone._id}>
                                         <div className='d-flex justify-content-between'>
                                             <div>

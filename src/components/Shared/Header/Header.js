@@ -26,12 +26,17 @@ const Header = () => {
                             <NavLink to="/blogs" className={({ isActive }) => isActive ? 'activeBottom' : 'bottomBorder'}>
                                 Blogs
                             </NavLink>
-                            <NavLink to="/addPhone" className={({ isActive }) => isActive ? 'activeBottom' : 'bottomBorder'}>
-                                Add Phone
-                            </NavLink>
-                            <NavLink to="/myInventory" className={({ isActive }) => isActive ? 'activeBottom' : 'bottomBorder'}>
-                                My Inventory
-                            </NavLink>
+                            {
+                                user &&
+                                <>
+                                    <NavLink to="/addPhone" className={({ isActive }) => isActive ? 'activeBottom' : 'bottomBorder'}>
+                                        Add Phone
+                                    </NavLink>
+                                    <NavLink to="/myInventory" className={({ isActive }) => isActive ? 'activeBottom' : 'bottomBorder'}>
+                                        My Inventory
+                                    </NavLink>
+                                </>
+                            }
                         </Nav>
                         <Nav>
                             {user ?
