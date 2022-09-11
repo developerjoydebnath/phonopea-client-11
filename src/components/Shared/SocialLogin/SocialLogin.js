@@ -5,6 +5,9 @@ import facebookLogo from '../../../images/socialIcon/facebook.png'
 import githubLogo from '../../../images/socialIcon/github.png'
 import { useLocation, useNavigate } from 'react-router-dom';
 import './SocialLogin.css';
+import { useEffect } from 'react';
+import axios from 'axios';
+import useToken from '../../../hooks/useToken';
 
 
 const SocialLogin = () => {
@@ -13,12 +16,14 @@ const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
     const [signInWithFacebook, user2, loading2, error2] = useSignInWithFacebook(auth);
+    const [token] = useToken(user || user1 || user2);
 
     const from = location?.state?.from?.pathname || '/';
 
-    if (user || user1 || user2) {
-        navigate(from, { replace: true });
+    if(token){
+        navigate(from, { replace: true })
     }
+
 
     return (
         <div className='container'>

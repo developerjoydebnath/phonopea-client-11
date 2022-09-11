@@ -30,7 +30,7 @@ const Phones = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const { data } = await axios.get('https://warehouse-manager-258000.herokuapp.com/productCount')
+            const { data } = await axios.get('http://localhost:5000/productCount')
             const productCount = data?.count;
             const page = Math.ceil(productCount / size);
             setPageCount(page);
@@ -83,7 +83,7 @@ const Phones = () => {
                 <button onClick={handleNextBtn} className='next-btn'><FaAngleDoubleRight className='mb-1' /></button>
 
                 {
-                    <select className='ms-3 page-size' onChange={e => setSize(e.target.value)}>
+                    <select className='ms-3 page-size bg-white' onChange={e => setSize(e.target.value)}>
                         <option value="5">5</option>
                         <option value="10" selected>10</option>
                         <option value="15">15</option>

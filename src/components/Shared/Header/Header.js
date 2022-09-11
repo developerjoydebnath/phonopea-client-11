@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Container, Navbar, Nav } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink } from 'react-router-dom';
 import auth from '../../../firebase.init';
@@ -50,7 +50,7 @@ const Header = () => {
                                                 <><img className="userImg" title="Username" src={user.photoURL} alt="" /> {user.displayName}</>
                                         }
                                     </NavLink>
-                                    <NavLink to="#" onClick={() => signOut(auth)} className='bottomBorder'>
+                                    <NavLink to="#" onClick={() => {signOut(auth)}} className='bottomBorder'>
                                         Signout
                                     </NavLink>
                                 </>

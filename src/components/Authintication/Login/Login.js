@@ -21,6 +21,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 import axios from 'axios';
 import PageTitle from '../../Shared/PageTitle';
+import { AiFillWarning } from "react-icons/ai";
+import useToken from '../../../hooks/useToken';
 
 function Copyright(props) {
     return (
@@ -41,12 +43,19 @@ export default function SignIn() {
         signInWithEmailAndPassword,
         user,
         loading,
-        error,
+        error
     ] = useSignInWithEmailAndPassword(auth);
+    const [token] = useToken(user);
+    console.log(token)
     const [sendPasswordResetEmail, sending, resetPassError] = useSendPasswordResetEmail(auth);
     const location = useLocation();
     const navigate = useNavigate();
     const from = location?.state?.from?.pathname || '/';
+
+    if(token){
+        navigate(from, { replace: true })
+        setLoginError('')
+    }
 
     useEffect(() => {
         if (error?.message === 'Firebase: Error (auth/wrong-password).') {
@@ -64,23 +73,15 @@ export default function SignIn() {
         if (resetPassError?.message === 'Firebase: Error (auth/missing-email).') {
             setResetEmail({ value: '', error: 'Email is missing!' })
         }
-    }, [error, resetPassError, sending])
+    }, [error, resetPassError])
 
-    if (user) {
-        // navigate(from, { replace: true })
-    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const email = formData.get('email')
         const password = formData.get('password')
-
         await signInWithEmailAndPassword(email, password)
-        const { data } = await axios.post('https://warehouse-manager-258000.herokuapp.com/login', { email })
-        console.log(data?.accessToken)
-        localStorage.setItem('accessToken', data?.accessToken)
-        navigate(from, { replace: true })
     };
 
 
@@ -105,7 +106,7 @@ export default function SignIn() {
     }
 
     const showPassword = e => {
-        console.log(e.target.parentElement.children[1].children[1].children[0].type)
+        // console.log(e.target.parentElement.children[1].children[1].children[0].type)
         setChecked(!checked);
         if (e.target.parentElement.children[1].children[1].children[0].type === 'password') {
             e.target.parentElement.children[1].children[1].children[0].type = 'text'
@@ -146,6 +147,9 @@ export default function SignIn() {
                         <Typography component="h1" variant="h5">
                             Sign in
                         </Typography>
+                        {
+                            loginError && <span className='text-danger mt-2'><AiFillWarning className='mb-1' /> {loginError}</span>
+                        }
                         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                             <TextField
                                 margin="normal"
@@ -154,12 +158,10 @@ export default function SignIn() {
                                 id="email"
                                 label="Email Address"
                                 name="email"
+                                type='email'
                                 autoComplete="email"
                                 autoFocus
                             />
-                            {
-                                loginError && <span className='text-danger'>{loginError}</span>
-                            }
                             <TextField
                                 margin="normal"
                                 required

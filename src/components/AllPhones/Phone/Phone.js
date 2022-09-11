@@ -17,7 +17,7 @@ const Phone = ({phone}) => {
                             
                         </Card.Text>
                     </Card.Body>
-                    <Card.Footer className='border-top-0'>
+                    <Card.Footer className='border-top-0 bg-white'>
                         <button className='btn btn-primary' onClick={()=> navigate(`/phoneDetails/${_id}`)}>Details</button>
                     </Card.Footer>
                 </Card>
