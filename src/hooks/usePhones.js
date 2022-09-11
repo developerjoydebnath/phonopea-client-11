@@ -9,7 +9,7 @@ const usePhones = ({ page, size }) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const url = `http://localhost:5000/phones?page=${page}&size=${size}`;
+            const url = `https://warehouse-manager-258000.herokuapp.com/phones?page=${page}&size=${size}`;
             const { data } = await axios.get(url);
             setPhones(data);
             data && setLoading(false);
