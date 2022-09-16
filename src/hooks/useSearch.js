@@ -14,7 +14,7 @@ const useSearch = (searchText) => {
                 setSearchResult([])
             }
             else {
-                const { data } = await axios.get(`https://warehouse-manager-258000.herokuapp.com/searchResult?search=${searchText}`);
+                const { data } = await axios.get(`http://localhost:5000/searchResult?search=${searchText}`);
                 setSearchResult(data);
                 setError(null)
                 data && setLoading(false);

@@ -5,10 +5,11 @@ import { useAuthState, useSendEmailVerification, useUpdateEmail, useUpdatePasswo
 import auth from '../../firebase.init';
 import profile from '../../images/header/user.png'
 import { FcApproval } from "react-icons/fc";
+import { BsInfoCircleFill } from "react-icons/bs";
 import PageTitle from '../Shared/PageTitle';
 import { GrUpdate } from 'react-icons/gr';
 import './MyProfile.css';
-import icon from '../../images/header/stars.png'
+import icon from '../../images/header/stars.png';
 
 const MyProfile = () => {
     const [user] = useAuthState(auth);
@@ -21,7 +22,8 @@ const MyProfile = () => {
     const [photoUrlError, setPhotoUrlError] = useState('');
     const [updateProfile, updating3, error3] = useUpdateProfile(auth);
     const [sendEmailVerification, sending, error] = useSendEmailVerification(auth);
-
+    const [open, setOpen] = useState(false);
+    console.log(open)
 
 
     const handleUpdateEmail = async (e) => {
@@ -83,7 +85,7 @@ const MyProfile = () => {
             }, 3000);
             e.target.reset()
         }
-        else{
+        else {
             setPhotoUrlError('PhotoUrl required!');
         }
     }
@@ -100,6 +102,12 @@ const MyProfile = () => {
         }
     }
 
+    const handleInfoBtn = () => {
+        setOpen(true);
+        setTimeout(() => {
+            setOpen(false)
+        }, 4000);
+    };
     return (
         <div className='main-container'>
             <img className='icon1' src={icon} alt="" />
@@ -108,18 +116,18 @@ const MyProfile = () => {
                 <PageTitle title='MyProfile' />
                 <div className='row mb-5 pt-5 mx-0 container'>
                     <div className='col-12 col-md-6 profile-container'>
-                        <h2>Profile</h2>
-                        {user?.photoURL ? <div className='image-container'><img  className='profile-img' src={user?.photoURL} alt="" /></div> : <div className='image-container'><img className='profile-img' src={profile} alt="" /></div>}
+                        <h2>Profile </h2>
+                        {user?.photoURL ? <div className='image-container'><img className='profile-img' src={user?.photoURL} alt="" /></div> : <div className='image-container'><img className='profile-img' src={profile} alt="" /></div>}
                         <div className='profile-divider'></div>
-                        <div className=''>
+                        <div className='mt-4'>
                             <div className=''>
-                                <h3>Name: {user?.displayName}</h3>
-                                <h4>Email: {user?.email}</h4>
-                                <h4>Email status: {user?.emailVerified ? <span className='text-success'>Verified <FcApproval className='mb-1' /></span> : <span className='text-danger'>Not verified <Button onClick={async () => {
+                                <h4 className='mb-3'>Name: {user?.displayName}</h4>
+                                <p className='email-div'>Email: {user?.email}</p>
+                                <p className='email-div'>Email status: {user?.emailVerified ? <span className='text-success'>Verified <FcApproval className='mb-1' /></span> : <span className='text-danger'>Not verified <Button onClick={async () => {
                                     await sendEmailVerification();
                                     alert('Email Sent');
-                                }} variant="contained">verify now</Button></span>}</h4>
-                                <h5>Last login time: {user?.metadata?.lastSignInTime}</h5>
+                                }} variant="contained">verify now</Button></span>}</p>
+                                <p>Last login time: {user?.metadata?.lastSignInTime}</p>
                             </div>
                         </div>
                     </div>
@@ -127,30 +135,32 @@ const MyProfile = () => {
 
                         <div className='inner-update'>
                             <h3 className='text-center'>Update profile <GrUpdate className='update-icon' /></h3>
-                            {photoUrlError && <Alert severity="warning">{photoUrlError}</Alert>}
-                            <form onSubmit={submitPhotoUrl}>
-                                {user?.providerData[0]?.providerId !== 'password' && <Alert severity="warning">Can't update email / password while logged in with social media!</Alert>}
-                                <label htmlFor="photoURL">Update Image</label> <br />
-                                <input onBlur={(e) => setPhotoURL(e.target.value)} className='me-3 mb-2' type="text" placeholder='give your photoUrl' name="photoUrl" id="" />
-                                <input type="submit" value="Save" />
+
+                            {user?.providerData[0]?.providerId !== 'password' && <Alert severity="warning">Can't update email / password while logged in with social media!</Alert>}
+
+                            <form onSubmit={submitPhotoUrl} className='mb-2'>
+                                {photoUrlError && <Alert severity="warning">{photoUrlError}</Alert>}
+                                <label htmlFor="photoURL" className={open ? 'modal-open' : ''}>Update Image <BsInfoCircleFill className='info-icon' onClick={handleInfoBtn} /></label> <br />
+                                <input onBlur={(e) => setPhotoURL(e.target.value)} className='me-3 mb-2 update-input' type="text" placeholder='give your photoUrl' name="photoUrl" id="" /> <br />
+                                <input className='submit-btn' type="submit" value="Save" />
                             </form>
                             {emailError && <Alert severity="warning">{emailError}</Alert>}
-                            <form onSubmit={handleUpdateEmail} className='mb-3'>
+                            <form onSubmit={handleUpdateEmail} className='mb-2'>
                                 {
                                     user?.providerData[0]?.providerId === 'password'
                                         ?
                                         <>
                                             <label htmlFor="email">Change Email</label><br />
-                                            <input type="email" className='ps-1 me-3' placeholder='Type new email' name="email" id="" />
-                                            <input type="email" className='ps-1 mb-2' placeholder='Retype new email' name="email" id="" /> <br />
-                                            <input type="submit" value="Save" />
+                                            <input type="email" className='me-3 update-input' placeholder='Type new email' name="email" id="" />
+                                            <input type="email" className='mb-2 update-input' placeholder='Retype new email' name="email" id="" /> <br />
+                                            <input className='submit-btn' type="submit" value="Save" />
                                         </>
                                         :
                                         <>
                                             <label htmlFor="email">Change Email</label><br />
-                                            <input type="email" readOnly className='ps-1 me-3' placeholder='Type new email' name="email" id="" />
-                                            <input type="email" readOnly className='ps-1 mb-2' placeholder='Retype new email' name="email" id="" /> <br />
-                                            <input type="submit" disabled value="Save" />
+                                            <input type="email" readOnly className='me-3 update-input' placeholder='Type new email' name="email" id="" />
+                                            <input type="email" readOnly className='mb-2 update-input' placeholder='Retype new email' name="email" id="" /> <br />
+                                            <input className='submit-btn' type="submit" disabled value="Save" />
                                         </>
                                 }
                             </form>
@@ -161,19 +171,19 @@ const MyProfile = () => {
                                         ?
                                         <>
                                             <label htmlFor="password">Change Password</label><br />
-                                            <input type="password" className='ps-1 me-3' placeholder='New password' name='password' />
-                                            <input type="password" className='ps-1 mb-2' placeholder='Confirm password' name='password' /> <br />
-                                            <input type="checkbox" onClick={showPassword} name="showPass" id="showPass" />
+                                            <input type="password" className='me-3 update-input' placeholder='New password' name='password' />
+                                            <input type="password" className='mb-2 update-input' placeholder='Confirm password' name='password' /> <br />
+                                            <input className='checkbox-div' type="checkbox" onClick={showPassword} name="showPass" id="showPass" />
                                             {checked ? <label className='ms-1 mb-2' htmlFor="showPass"> Hide password</label> : <label className='ms-1 mb-2' htmlFor="showPass"> Show password</label>}
                                             <br />
-                                            <input type="submit" value="Save" />
+                                            <input className='submit-btn' type="submit" value="Save" />
                                         </>
                                         :
                                         <>
                                             <label htmlFor="password">Change Password</label><br />
-                                            <input type="password" readOnly className='ps-1 me-3' placeholder='New password' name='password' />
-                                            <input type="password" readOnly className='ps-1 mb-2' placeholder='Confirm password' name='password' /> <br />
-                                            <input type="submit" disabled value="Save" />
+                                            <input type="password" readOnly className='me-3 update-input' placeholder='New password' name='password' />
+                                            <input type="password" readOnly className='mb-2 update-input' placeholder='Confirm password' name='password' /> <br />
+                                            <input className='submit-btn' type="submit" disabled value="Save" />
                                         </>
                                 }
                             </form>

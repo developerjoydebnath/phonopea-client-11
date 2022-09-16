@@ -1,0 +1,4 @@
+.add-phone-container{
+    height: calc(100vh - 57px);
+    background-image: linear-gradient(rgb(200, 255, 233), rgb(233, 255, 182));
+}

@@ -87,8 +87,16 @@ const CustomerReview = () => {
                 responsive={{
                     mobile: {
                         breakpoint: {
-                            max: 450,
+                            max: 330,
                             min: 0
+                        },
+                        items: 2,
+                        partialVisibilityGutter: 30
+                    },
+                    mobile2: {
+                        breakpoint: {
+                            max: 450,
+                            min: 330
                         },
                         items: 3,
                         partialVisibilityGutter: 30

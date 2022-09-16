@@ -12,22 +12,24 @@ import CustomerReview from '../../CustomerReview/CustomerReview';
 
 const Home = () => {
     return (
-        <div className='container'>
-            <PageTitle title='Home' />
-            <div className="slider mt-4">
-                <Carousel autoPlay={true} interval={3000} infiniteLoop={true}>
-                    <div className="slider-img">
-                        <img src={sliderImg1} alt='' />
-                    </div>
-                    <div className="slider-img">
-                        <img src={sliderImg2} alt='' />
-                    </div>
-                    <div className="slider-img">
-                        <img src={sliderImg3} alt='' />
-                    </div>
-                </Carousel>
-                <ShortPhone/>
-                <CustomerReview/>
+        <div className='home-container'>
+            <div className='container'>
+                <PageTitle title='Home' />
+                <div className="slider pt-4">
+                    <Carousel autoPlay={true} interval={3000} infiniteLoop={true}>
+                        <div className="slider-img">
+                            <img src={sliderImg1} alt='' />
+                        </div>
+                        <div className="slider-img">
+                            <img src={sliderImg2} alt='' />
+                        </div>
+                        <div className="slider-img">
+                            <img src={sliderImg3} alt='' />
+                        </div>
+                    </Carousel>
+                    <ShortPhone />
+                    <CustomerReview />
+                </div>
             </div>
         </div>
     );

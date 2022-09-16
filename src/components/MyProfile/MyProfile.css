@@ -10,16 +10,16 @@
 }
 .icon1{
     position: absolute;
-    top: 5px;
-    left: 5%;
+    top: 15px;
+    left: 15%;
     opacity: 0.3;
     width: 150px;
 }
 .icon2{
     position: absolute;
     width: 180px;
-    top: 400px;
-    left: 30%;
+    top: 200px;
+    left: 40%;
     opacity: 0.2;
 }
 .image-container{
@@ -62,7 +62,7 @@
 .profile-divider{
     height: 2px;
     width: 70%;
-    margin: 10px auto;
+    margin: 25px auto;
     background-color: rgb(0, 0, 0);
     position: relative;
 }
@@ -75,4 +75,51 @@
     width: 95%;
     margin: 0 auto;
     background-color: rgb(0, 0, 0);
+}
+.modal-open{
+    position: relative;
+}
+.modal-open::after{
+    content: 'Image resolution should be 150x150 px ';
+    position: absolute;
+    padding-left: 8px;
+    padding-top: 4px;
+    height: 80px;
+    width: 150px;
+    bottom: 20px;
+    right: 20;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.387);
+    background: rgba(255, 255, 255, 0.866);
+    border-radius: 10px;
+}
+.info-icon{
+    cursor: pointer;
+}
+.update-input{
+    width: 250px;
+    height: 35px;
+    margin-bottom: 3px;
+    outline: none;
+    border: 1px solid rgb(39, 203, 2);
+    /* border: 0; */
+    border-radius: 5px;
+    padding: 8px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.313);
+}
+.submit-btn{
+    background-color: rgb(63, 175, 3);
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+.submit-btn:hover{
+    background-color: rgb(55, 138, 11);
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.313);
+}
+.checkbox-div{
+    accent-color: rgb(19, 152, 1);
+}
+.email-div{
+    font-size: 18px;
+    font-weight: 600;
 }

@@ -3,3 +3,6 @@
     border-radius: 20px;
     overflow: hidden;
 }
+.home-container{
+    background-image: linear-gradient(#aefcd2, #ffffff);
+}

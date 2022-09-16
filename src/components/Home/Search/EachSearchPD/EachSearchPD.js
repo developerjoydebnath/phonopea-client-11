@@ -1,9 +1,9 @@
 import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import CardGroup from 'react-bootstrap/CardGroup';
 import { useNavigate } from 'react-router-dom';
+import './EachSearchPD.css';
 
 const EachSearchPD = (props) => {
     const { name, brand, description, email, img, price, quantity, supplierName, _id } = props.pd;
@@ -20,11 +20,12 @@ const EachSearchPD = (props) => {
                 <Card>
                     <Card.Img variant="top" src={img} />
                     <Card.Body>
-                        <Card.Title>{name}</Card.Title>
+                        {/* <Card.Title>{name}</Card.Title> */}
                         <Card.Text>
-                            Quantity: {quantity}
+                            {name}
                         </Card.Text>
-                        <Button onClick={handleOnclick} variant="primary">Details</Button>
+                        {/* <Button onClick={handleOnclick} variant="primary">Details</Button> */}
+                        <button onClick={handleOnclick} className='details-btn'>Details</button>
                     </Card.Body>
                 </Card>
             </CardGroup>

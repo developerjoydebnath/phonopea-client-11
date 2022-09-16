@@ -1,6 +1,6 @@
 
 .icon-container{
-    width: 125px;
+    width: 120px;
 }
 .delete-btn{
     border: none;
@@ -38,4 +38,12 @@
 }
 .edit-icon{
     margin: 0 0 3px 2px;
+}
+.list-phone-name{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+.list-phone-name:hover{
+    text-decoration: underline;
+    color: rgb(57, 181, 0);
 }

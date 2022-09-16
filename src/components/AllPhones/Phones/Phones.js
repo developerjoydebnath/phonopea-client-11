@@ -16,7 +16,6 @@ const Phones = () => {
     const [size, setSize] = useState(10);
     const { phones, loading } = usePhones({ page, size });
 
-    console.log(pageCount, page, size)
 
     useEffect(() => {
         if (page + 1 > pageCount && page !== 0) {
@@ -27,7 +26,7 @@ const Phones = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const { data } = await axios.get('https://warehouse-manager-258000.herokuapp.com/productCount')
+            const { data } = await axios.get('http://localhost:5000/productCount')
             const productCount = data?.count;
             const page = Math.ceil(productCount / size);
             setPageCount(page);
@@ -49,7 +48,7 @@ const Phones = () => {
 
 
     return (
-        <div>
+        <div className='phones-container'>
             <PageTitle title='Phones' />
             {
                 loading ?

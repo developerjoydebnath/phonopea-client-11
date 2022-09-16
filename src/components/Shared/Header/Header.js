@@ -7,6 +7,8 @@ import SearchBar from '../../Home/Search/SearchBar/SearchBar';
 import userLogo from '../../../images/header/user.png'
 import './Header.css';
 import { signOut } from 'firebase/auth';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const Header = () => {
     const [user] = useAuthState(auth);
@@ -47,7 +49,7 @@ const Header = () => {
                                             user?.photoURL === null ?
                                                 <><img className="userImg" title="Username" src={userLogo} alt="" /> {user.displayName}</>
                                                 :
-                                                <><img className="userImg" title="Username" src={user.photoURL} alt="" /> {user.displayName}</>
+                                                <><img className="userImg" title="Username" src={user?.photoURL} alt="" /> {user.displayName}</>
                                         }
                                     </NavLink>
                                     <NavLink to="#" onClick={() => {signOut(auth)}} className='bottomBorder'>
