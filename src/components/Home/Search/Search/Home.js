@@ -8,6 +8,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import './Home.css'
 import ShortPhone from '../../ShortPhone/ShortPhone';
 import PageTitle from '../../../Shared/PageTitle';
+import CustomerReview from '../../CustomerReview/CustomerReview';
 
 const Home = () => {
     return (
@@ -26,6 +27,7 @@ const Home = () => {
                     </div>
                 </Carousel>
                 <ShortPhone/>
+                <CustomerReview/>
             </div>
         </div>
     );

@@ -9,24 +9,59 @@ import { CgDetailsMore } from "react-icons/cg";
 import './ManageInventory.css';
 import { Alert, Tooltip } from '@mui/material';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PageTitle from '../Shared/PageTitle';
-import useInventory from '../../hooks/useInventory';
+import usePhones from '../../hooks/usePhones';
+import { FaAngleDoubleRight } from "react-icons/fa";
+import { FaAngleDoubleLeft } from "react-icons/fa";
 
 const ManageInventory = () => {
     const navigate = useNavigate();
-    const { allPhone, setAllPhone, loading } = useInventory();
+    const [pageCount, setPageCount] = useState(0);
+    const [page, setPage] = useState(0);
+    const [size, setSize] = useState(15);
+    const { phones, setPhones, loading } = usePhones({ page, size });
     const [deleted, setDeleted] = useState(false);
     let i = 1;
+
+
+    useEffect(() => {
+        if (page + 1 > pageCount && page !== 0) {
+            const newPageCount = pageCount - 1;
+            setPage(newPageCount)
+        }
+    }, [page, pageCount])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const { data } = await axios.get('http://localhost:5000/productCount')
+            const productCount = data?.count;
+            const page = Math.ceil(productCount / size);
+            setPageCount(page);
+        }
+        fetchData()
+    }, [size])
+
+    const handlePreviousBtn = () => {
+        if (page > 0) {
+            setPage(page - 1)
+        }
+    }
+
+    const handleNextBtn = () => {
+        if (page + 1 < pageCount) {
+            setPage(page + 1)
+        }
+    }
 
     const handleDeleteItem = async (id) => {
         const agree = window.confirm('are you sure , you want to delete this item ?')
         if (agree) {
             console.log('done')
-            const { data } = await axios.delete(`https://warehouse-manager-258000.herokuapp.com/deleteItem?id=${id}`);
+            const { data } = await axios.delete(`http://localhost:5000/deleteItem?id=${id}`);
             if (data?.deletedCount === 1) {
-                const rest = allPhone.filter(phone => phone._id !== id)
-                setAllPhone(rest);
+                const rest = phones.filter(phone => phone._id !== id)
+                setPhones(rest);
                 setDeleted(true)
                 setTimeout(() => {
                     setDeleted(false)
@@ -58,7 +93,7 @@ const ManageInventory = () => {
                         </div>
                         <ListGroup>
                             {
-                                allPhone.map(phone =>
+                                phones.map(phone =>
                                     <ListGroup.Item key={phone._id}>
                                         <div className='d-flex justify-content-between'>
                                             <div>
@@ -88,6 +123,21 @@ const ManageInventory = () => {
                                 )
                             }
                         </ListGroup>
+                        <div className='container my-5'>
+                            <button onClick={handlePreviousBtn} className='next-btn'><FaAngleDoubleLeft className='mb-1' /></button>
+                            {
+                                [...Array(pageCount).keys()].map(number => <button key={number} onClick={() => setPage(number)} className={page === number ? 'selected-page' : 'page-btn'}>{number + 1}</button>)
+                            }
+                            <button onClick={handleNextBtn} className='next-btn'><FaAngleDoubleRight className='mb-1' /></button>
+
+                            {
+                                <select className='ms-3 page-size bg-white' onChange={e => setSize(e.target.value)}>
+                                    <option value="15" selected>15</option>
+                                    <option value="20">20</option>
+                                </select>
+                            }
+                            <span className='products-per-page'> - products per page</span>
+                        </div>
                     </div>
             }
         </div>

@@ -6,6 +6,9 @@ import auth from '../../firebase.init';
 import profile from '../../images/header/user.png'
 import { FcApproval } from "react-icons/fc";
 import PageTitle from '../Shared/PageTitle';
+import { GrUpdate } from 'react-icons/gr';
+import './MyProfile.css';
+import icon from '../../images/header/stars.png'
 
 const MyProfile = () => {
     const [user] = useAuthState(auth);
@@ -14,14 +17,11 @@ const MyProfile = () => {
     const [passError, setPassError] = useState('');
     const [updateEmail, updating2, error2] = useUpdateEmail(auth);
     const [emailError, setEmailError] = useState('')
-    const [displayName, setDisplayName] = useState('');
     const [photoURL, setPhotoURL] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [photoUrlError, setPhotoUrlError] = useState('');
     const [updateProfile, updating3, error3] = useUpdateProfile(auth);
     const [sendEmailVerification, sending, error] = useSendEmailVerification(auth);
 
-    // console.log(updating2)
-    // console.log(error2)
 
 
     const handleUpdateEmail = async (e) => {
@@ -68,7 +68,7 @@ const MyProfile = () => {
                 setPassError('Password too short, must contain 8 character');
             }
         }
-        else(
+        else (
             setPassError('Password does not matched')
         )
     }
@@ -77,8 +77,14 @@ const MyProfile = () => {
         e.preventDefault();
         if (photoURL) {
             await updateProfile({ photoURL });
-            alert('photourl updated')
+            setPhotoUrlError('Photo Updated');
+            setTimeout(() => {
+                setPhotoUrlError('');
+            }, 3000);
             e.target.reset()
+        }
+        else{
+            setPhotoUrlError('PhotoUrl required!');
         }
     }
 
@@ -95,74 +101,84 @@ const MyProfile = () => {
     }
 
     return (
-        <div className='container'>
-            <PageTitle title='MyProfile' />
-            <div className='row my-5'>
-                <div className='col-12 col-md-6 border'>
-                    <h1>this is profile</h1>
-                    {user?.photoURL ? <img width={150} height={150} className='rounded-circle' src={user?.photoURL} alt="" /> : <img width={150} src={profile} alt="" />}
-                    <div>
-                        <h3>name: {user?.displayName}</h3>
-                        <h4>email: {user?.email}</h4>
-                        <h4>Email status: {user?.emailVerified ? <span className='text-success'>Verified <FcApproval className='mb-1'/></span> : <span className='text-danger'>Not verified <Button onClick={async () => {
-                            await sendEmailVerification();
-                            alert('Email Sent');
-                        }} variant="contained">verify now</Button></span>}</h4>
-                        <h5>last login time: {user?.metadata?.lastSignInTime}</h5>
+        <div className='main-container'>
+            <img className='icon1' src={icon} alt="" />
+            <img className='icon2' src={icon} alt="" />
+            <div className='container'>
+                <PageTitle title='MyProfile' />
+                <div className='row mb-5 pt-5 mx-0 container'>
+                    <div className='col-12 col-md-6 profile-container'>
+                        <h2>Profile</h2>
+                        {user?.photoURL ? <div className='image-container'><img  className='profile-img' src={user?.photoURL} alt="" /></div> : <div className='image-container'><img className='profile-img' src={profile} alt="" /></div>}
+                        <div className='profile-divider'></div>
+                        <div className=''>
+                            <div className=''>
+                                <h3>Name: {user?.displayName}</h3>
+                                <h4>Email: {user?.email}</h4>
+                                <h4>Email status: {user?.emailVerified ? <span className='text-success'>Verified <FcApproval className='mb-1' /></span> : <span className='text-danger'>Not verified <Button onClick={async () => {
+                                    await sendEmailVerification();
+                                    alert('Email Sent');
+                                }} variant="contained">verify now</Button></span>}</h4>
+                                <h5>Last login time: {user?.metadata?.lastSignInTime}</h5>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className='col-12 col-md-6 border'>
-                    <h1>this is update profile</h1>
+                    <div className='col-12 col-md-6'>
 
-                    <form onSubmit={submitPhotoUrl}>
-                        { user?.providerData[0]?.providerId !== 'password' && <Alert severity="warning">Can't update email / password while logged in with social media!</Alert>}
-                        <label htmlFor="photoURL">Update Image</label> <br />
-                        <input onBlur={(e) => setPhotoURL(e.target.value)} className='me-3 mb-2' type="text" placeholder='give your photoUrl' name="photoUrl" id="" />
-                        <input type="submit" value="Save" />
-                    </form>
-                    {emailError && <Alert severity="warning">{emailError}</Alert>}
-                    <form onSubmit={handleUpdateEmail} className='mb-3'>
-                        {
-                            user?.providerData[0]?.providerId === 'password'
-                                ?
-                                <>
-                                    <label htmlFor="email">Change Email</label><br />
-                                    <input type="email" className='ps-1 me-3' placeholder='Type new email' name="email" id="" />
-                                    <input type="email" className='ps-1 mb-2' placeholder='Retype new email' name="email" id="" /> <br />
-                                    <input type="submit" value="Save" />
-                                </>
-                                :
-                                <>
-                                    <label htmlFor="email">Change Email</label><br />
-                                    <input type="email" readOnly className='ps-1 me-3' placeholder='Type new email' name="email" id="" />
-                                    <input type="email" readOnly className='ps-1 mb-2' placeholder='Retype new email' name="email" id="" /> <br />
-                                    <input type="submit" disabled value="Save" />
-                                </>
-                        }
-                    </form>
-                    {passError && <Alert severity="warning">{passError}</Alert>}
-                    <form onSubmit={handleUpdatePassword} className='mb-3'>
-                        {
-                            user?.providerData[0]?.providerId === 'password'
-                                ?
-                                <>
-                                    <label htmlFor="password">Change Password</label><br />
-                                    <input type="password" className='ps-1 me-3' placeholder='New password' name='password' />
-                                    <input type="password" className='ps-1 mb-2' placeholder='Confirm password' name='password' /> <br />
-                                    <input type="checkbox" onClick={showPassword} name="showPass" id="showPass" />
-                                    {checked ? <label className='ms-1 mb-1' htmlFor="showPass"> Hide password</label> : <label className='ms-1 mb-1' htmlFor="showPass"> Show password</label>}
-                                    <br />
-                                    <input type="submit" value="Save" />
-                                </>
-                                :
-                                <>
-                                    <label htmlFor="password">Change Password</label><br />
-                                    <input type="password" readOnly className='ps-1 me-3' placeholder='New password' name='password' />
-                                    <input type="password" readOnly className='ps-1 mb-2' placeholder='Confirm password' name='password' /> <br />
-                                    <input type="submit" disabled value="Save" />
-                                </>
-                        }
-                    </form>
+                        <div className='inner-update'>
+                            <h3 className='text-center'>Update profile <GrUpdate className='update-icon' /></h3>
+                            {photoUrlError && <Alert severity="warning">{photoUrlError}</Alert>}
+                            <form onSubmit={submitPhotoUrl}>
+                                {user?.providerData[0]?.providerId !== 'password' && <Alert severity="warning">Can't update email / password while logged in with social media!</Alert>}
+                                <label htmlFor="photoURL">Update Image</label> <br />
+                                <input onBlur={(e) => setPhotoURL(e.target.value)} className='me-3 mb-2' type="text" placeholder='give your photoUrl' name="photoUrl" id="" />
+                                <input type="submit" value="Save" />
+                            </form>
+                            {emailError && <Alert severity="warning">{emailError}</Alert>}
+                            <form onSubmit={handleUpdateEmail} className='mb-3'>
+                                {
+                                    user?.providerData[0]?.providerId === 'password'
+                                        ?
+                                        <>
+                                            <label htmlFor="email">Change Email</label><br />
+                                            <input type="email" className='ps-1 me-3' placeholder='Type new email' name="email" id="" />
+                                            <input type="email" className='ps-1 mb-2' placeholder='Retype new email' name="email" id="" /> <br />
+                                            <input type="submit" value="Save" />
+                                        </>
+                                        :
+                                        <>
+                                            <label htmlFor="email">Change Email</label><br />
+                                            <input type="email" readOnly className='ps-1 me-3' placeholder='Type new email' name="email" id="" />
+                                            <input type="email" readOnly className='ps-1 mb-2' placeholder='Retype new email' name="email" id="" /> <br />
+                                            <input type="submit" disabled value="Save" />
+                                        </>
+                                }
+                            </form>
+                            {passError && <Alert severity="warning">{passError}</Alert>}
+                            <form onSubmit={handleUpdatePassword} className='mb-3'>
+                                {
+                                    user?.providerData[0]?.providerId === 'password'
+                                        ?
+                                        <>
+                                            <label htmlFor="password">Change Password</label><br />
+                                            <input type="password" className='ps-1 me-3' placeholder='New password' name='password' />
+                                            <input type="password" className='ps-1 mb-2' placeholder='Confirm password' name='password' /> <br />
+                                            <input type="checkbox" onClick={showPassword} name="showPass" id="showPass" />
+                                            {checked ? <label className='ms-1 mb-2' htmlFor="showPass"> Hide password</label> : <label className='ms-1 mb-2' htmlFor="showPass"> Show password</label>}
+                                            <br />
+                                            <input type="submit" value="Save" />
+                                        </>
+                                        :
+                                        <>
+                                            <label htmlFor="password">Change Password</label><br />
+                                            <input type="password" readOnly className='ps-1 me-3' placeholder='New password' name='password' />
+                                            <input type="password" readOnly className='ps-1 mb-2' placeholder='Confirm password' name='password' /> <br />
+                                            <input type="submit" disabled value="Save" />
+                                        </>
+                                }
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -21,16 +21,12 @@ import { Audio } from 'react-loader-spinner';
 import { useEffect } from 'react';
 import './SignUp.css';
 import PageTitle from '../../Shared/PageTitle';
+import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" to="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
+            <SocialLogin />
         </Typography>
     );
 }
@@ -279,7 +275,7 @@ export default function SignUp() {
                         <Grid container justifyContent="flex-start">
                             <Grid item>
                                 <Link to="/login" variant="body2">
-                                    Already have an account? Sign in
+                                    Already have an account? Login
                                 </Link>
                             </Grid>
                         </Grid>

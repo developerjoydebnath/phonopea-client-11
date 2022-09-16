@@ -33,7 +33,7 @@ const ShortPhone = () => {
                     </div>
             }
             <div>
-                <button onClick={() => { navigate('/manageInventory') }}>Show all phones</button>
+                <button className='btn btn-success mt-3 ms-3' onClick={() => { navigate('/manageInventory') }}>Manage Inventory</button>
             </div>
         </>
     );

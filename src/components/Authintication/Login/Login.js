@@ -19,7 +19,6 @@ import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
-import axios from 'axios';
 import PageTitle from '../../Shared/PageTitle';
 import { AiFillWarning } from "react-icons/ai";
 import useToken from '../../../hooks/useToken';
@@ -46,7 +45,6 @@ export default function SignIn() {
         error
     ] = useSignInWithEmailAndPassword(auth);
     const [token] = useToken(user);
-    console.log(token)
     const [sendPasswordResetEmail, sending, resetPassError] = useSendPasswordResetEmail(auth);
     const location = useLocation();
     const navigate = useNavigate();
@@ -145,7 +143,7 @@ export default function SignIn() {
                             <LockOutlinedIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Sign in
+                            Login
                         </Typography>
                         {
                             loginError && <span className='text-danger mt-2'><AiFillWarning className='mb-1' /> {loginError}</span>
@@ -180,7 +178,7 @@ export default function SignIn() {
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                             >
-                                Sign In
+                                Login
                             </Button>
                             <Grid container>
                                 <Grid item xs>

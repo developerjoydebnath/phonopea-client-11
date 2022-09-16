@@ -2,10 +2,77 @@
     position: relative;
     z-index: 1;
 } */
+.main-container{
+    background-image: linear-gradient(rgb(174, 255, 173), rgb(255, 255, 255));
+    height: 100vh;
+    margin-top: 0;
+    position: relative;
+}
+.icon1{
+    position: absolute;
+    top: 5px;
+    left: 5%;
+    opacity: 0.3;
+    width: 150px;
+}
+.icon2{
+    position: absolute;
+    width: 180px;
+    top: 400px;
+    left: 30%;
+    opacity: 0.2;
+}
+.image-container{
+    height: 150px;
+    width: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.profile-img{
+    width: 150px;
+    height: auto;
+}
 .visible-icon{
     /* position: absolute; */
     /* right: 22px;
     top: 0px; */
     font-size: 22px;
     cursor: pointer;
+}
+.update-icon{
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.profile-container{
+    text-align: center;
+    padding: 20px 0;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.141);
+    box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.198);
+}
+.inner-update{
+    width: 300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-top: 15px;
+    padding-bottom: 1px;
+    /* background-color: rgba(255, 255, 255, 0.318); */
+}
+.profile-divider{
+    height: 2px;
+    width: 70%;
+    margin: 10px auto;
+    background-color: rgb(0, 0, 0);
+    position: relative;
+}
+.profile-divider::after{
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 0;
+    height: 2px;
+    width: 95%;
+    margin: 0 auto;
+    background-color: rgb(0, 0, 0);
 }
