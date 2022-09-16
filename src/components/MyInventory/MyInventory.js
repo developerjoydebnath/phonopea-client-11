@@ -22,7 +22,7 @@ const MyInventory = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const url = `http://localhost:5000/myInventory?email=${user?.email}`;
+            const url = `https://warehouse-manager-258000.herokuapp.com/myInventory?email=${user?.email}`;
             try {
                 const { data } = await axios.get(url, {
                     headers: {
@@ -42,12 +42,12 @@ const MyInventory = () => {
         fetchData()
     }, [user?.email])
 
-    
+
     const handleDeleteItem = async (id) => {
         const agree = window.confirm('are you sure , you want to delete this item ?')
         if (agree) {
             console.log('done')
-            const { data } = await axios.delete(`http://localhost:5000/deleteItem?id=${id}`);
+            const { data } = await axios.delete(`https://warehouse-manager-258000.herokuapp.com/deleteItem?id=${id}`);
             if (data?.deletedCount === 1) {
                 const rest = myItems.filter(phone => phone._id !== id)
                 setMyitems(rest);
