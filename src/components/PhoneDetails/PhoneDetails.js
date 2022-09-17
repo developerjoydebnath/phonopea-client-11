@@ -49,7 +49,7 @@ const PhoneDetails = () => {
     }
 
     return (
-        <div>
+        <div  className='phone-details-container'>
             <PageTitle title='PhoneDetails' />
             {loading ? (
                 <div className='container' style={{ position: 'relative', height: '100vh' }}>
@@ -64,7 +64,7 @@ const PhoneDetails = () => {
                 </div>
             ) : (
                 <>
-                    <div className="details-container mt-5 row align-items-center">
+                    <div className="details-container pt-5 row align-items-center">
                         <div className="col-lg-6 col-md-12 col-12 text-lg-end text-md-center text-center">
                             <img className="details-img" src={img} alt="" />
                         </div>
@@ -77,14 +77,14 @@ const PhoneDetails = () => {
                                 <h5> <FcApproval className="icon" /> Quantity: {quantity}</h5>
                                 <h5 className='d-inline'><FcApproval className="icon" /> Description:</h5> <p className='d-inline'>{description}</p> <br />
                                 {/* <button onClick={handleDelivery} className='btn btn-primary mt-3'>Delivered</button> */}
-                                <Button onClick={handleDelivery} className='me-3 mt-3' variant="contained">Delivered</Button>
-                                <Button onClick={() => navigate(-1)} className='mt-3' variant="contained">Go Back</Button>
+                                <Button onClick={handleDelivery} className='me-3 mt-3' variant="contained" color="success">Delivered</Button>
+                                <Button onClick={() => navigate(-1)} className='mt-3' variant="contained" color="success">Go Back</Button>
                             </div>
                         </div>
                     </div>
-                    <form className='text-center mt-3' onSubmit={handleRestock}>
-                        <input type="number" name="quantity" id="" />
-                        <input type="submit" value="Restock" />
+                    <form className='d-flex justify-content-center restock-container' onSubmit={handleRestock}>
+                        <input type="number" placeholder='Quantity' className='restock-input' name="quantity" id="" />
+                        <input type="submit" className='restock-btn' value="Restock" />
                     </form>
                 </>
             )}

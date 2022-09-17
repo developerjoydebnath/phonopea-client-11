@@ -35,6 +35,7 @@ const SearchBar = () => {
                         <SearchResult
                             searchresult={searchResult}
                             show={modalShow}
+                            searchText={searchText}
                             onHide={() => setModalShow(false)}
                         ></SearchResult>
                 }

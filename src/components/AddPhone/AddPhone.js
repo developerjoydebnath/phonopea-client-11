@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 import PageTitle from '../Shared/PageTitle';
 import './AddPhone.css';
 
-// const { name, brand, description, email, img, price, quantity, supplierName, _id } = phone;
 
 
 const AddPhone = () => {

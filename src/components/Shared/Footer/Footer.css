@@ -1,0 +1,24 @@
+.footer-container{
+    height: 200px;
+    background-color: rgb(59, 59, 59);
+}
+.footer-links{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    width: max-content;
+}
+.footer-address{
+    color: rgb(255, 255, 255);
+}
+.footer-links:hover{
+    color: white;
+    text-decoration: underline;
+}
+.footer-icon{
+    background: none;
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}

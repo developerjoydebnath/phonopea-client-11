@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
@@ -8,14 +7,15 @@ import EachSearchPD from '../EachSearchPD/EachSearchPD';
 
 
 const SearchResult = (props) => {
-    const { searchresult } = props;
+    const { searchresult, searchText } = props;
 
     return (
         <div>
             <Modal scrollable {...props} aria-labelledby="contained-modal-title-vcenter">
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        Using Grid in Modal
+                        Search result for <span className='text-success'>{searchText && searchText}</span>
+                        
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="show-grid">

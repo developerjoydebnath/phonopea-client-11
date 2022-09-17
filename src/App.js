@@ -11,6 +11,7 @@ import MyProfile from './components/MyProfile/MyProfile';
 import PageNotFound from './components/PageNotFound/PageNotFound';
 import PhoneDetails from './components/PhoneDetails/PhoneDetails';
 import RequireAuth from './components/RequireAuth/RequireAuth';
+import Footer from './components/Shared/Footer/Footer';
 import Header from './components/Shared/Header/Header';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='/profile' element={<RequireAuth><MyProfile/></RequireAuth>}></Route>
         <Route path='*' element={<PageNotFound/>}></Route>
       </Routes>
+      <Footer/>
     </div>
   );
 }

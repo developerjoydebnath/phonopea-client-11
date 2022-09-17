@@ -9,6 +9,7 @@ import './Home.css'
 import ShortPhone from '../../ShortPhone/ShortPhone';
 import PageTitle from '../../../Shared/PageTitle';
 import CustomerReview from '../../CustomerReview/CustomerReview';
+import Partners from '../../Partners/Partners';
 
 const Home = () => {
     return (
@@ -28,6 +29,7 @@ const Home = () => {
                         </div>
                     </Carousel>
                     <ShortPhone />
+                    <Partners/>
                     <CustomerReview />
                 </div>
             </div>

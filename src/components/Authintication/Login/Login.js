@@ -37,7 +37,7 @@ export default function SignIn() {
     const [checked, setChecked] = useState(false);
     const [resetEmail, setResetEmail] = useState({ value: '', error: '' });
     const [loginError, setLoginError] = useState('');
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const [
         signInWithEmailAndPassword,
         user,
@@ -50,10 +50,13 @@ export default function SignIn() {
     const navigate = useNavigate();
     const from = location?.state?.from?.pathname || '/';
 
-    if(token){
-        navigate(from, { replace: true })
-        setLoginError('')
-    }
+
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true })
+            setLoginError('')
+        }
+    }, [token])
 
     useEffect(() => {
         if (error?.message === 'Firebase: Error (auth/wrong-password).') {

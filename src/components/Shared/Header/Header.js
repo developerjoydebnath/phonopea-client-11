@@ -7,8 +7,6 @@ import SearchBar from '../../Home/Search/SearchBar/SearchBar';
 import userLogo from '../../../images/header/user.png'
 import './Header.css';
 import { signOut } from 'firebase/auth';
-import { useEffect } from 'react';
-import { useState } from 'react';
 
 const Header = () => {
     const [user] = useAuthState(auth);
