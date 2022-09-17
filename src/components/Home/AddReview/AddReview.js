@@ -35,7 +35,7 @@ const AddReview = () => {
         const reviewObject = { name, review, date, nameFirstLetter, color }
         console.log(reviewObject)
 
-        const { data } = await axios.post(`http://localhost:5000/addReview`, reviewObject)
+        const { data } = await axios.post(`https://warehouse-manager-258000.herokuapp.com/addReview`, reviewObject)
 
         data?.acknowledged && e.target.reset()
     }
