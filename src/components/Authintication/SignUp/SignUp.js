@@ -25,9 +25,7 @@ import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 function Copyright(props) {
     return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            <SocialLogin />
-        </Typography>
+        <SocialLogin />
     );
 }
 
@@ -52,7 +50,6 @@ export default function SignUp() {
     const [updateProfile, updating, updateNameError] = useUpdateProfile(auth);
     const navigate = useNavigate();
 
-    console.log(user)
 
     useEffect(() => {
         agree && setNotAgree('')
@@ -145,7 +142,7 @@ export default function SignUp() {
     };
 
     const showPassword = e => {
-        console.log(e.target.parentElement.parentElement.children[2].children[0].children[1].children[0].type)
+        // console.log(e.target.parentElement.parentElement.children[2].children[0].children[1].children[0].type)
         setChecked(!checked);
         if (e.target.parentElement.parentElement.children[2].children[0].children[1].children[0].type && e.target.parentElement.parentElement.children[3].children[0].children[1].children[0].type === 'password') {
             e.target.parentElement.parentElement.children[2].children[0].children[1].children[0].type = 'text'
@@ -162,7 +159,7 @@ export default function SignUp() {
     return (
         <ThemeProvider theme={theme}>
             <PageTitle title='Signup' />
-            <Container component="main" maxWidth="xs" style={{ position: 'relative', height: '100vh' }}>
+            <Container component="main" maxWidth="xs" style={{ position: 'relative', textAlign: 'center', marginBottom: '50px' }}>
                 {
                     loading &&
                     <div style={{ position: 'absolute', top: '30%', left: '40%' }}>
@@ -189,7 +186,7 @@ export default function SignUp() {
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                    <Box className='text-start' component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid onBlur={displayNameBlur} item xs={12}>
                                 <TextField

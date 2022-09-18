@@ -9,12 +9,14 @@ import Phone from '../Phone/Phone';
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { FaAngleDoubleLeft } from "react-icons/fa";
 import './Phones.css';
+import { useNavigate } from 'react-router-dom';
 
 const Phones = () => {
     const [pageCount, setPageCount] = useState(0);
     const [page, setPage] = useState(0);
     const [size, setSize] = useState(10);
     const { phones, loading } = usePhones({ page, size });
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -71,7 +73,10 @@ const Phones = () => {
                         }
                     </div>
             }
-            <div className='container my-5'>
+            <div className='container my-2'>
+                <button className='btn btn-success mt-3 ms-3' onClick={() => { navigate('/manageInventory') }}>Manage Inventory</button>
+            </div>
+            <div className='container my-2'>
                 <button onClick={handlePreviousBtn} className='next-btn'><FaAngleDoubleLeft className='mb-1' /></button>
                 {
                     [...Array(pageCount).keys()].map(number => <button key={number} onClick={() => setPage(number)} className={page === number ? 'selected-page' : 'page-btn'}>{number + 1}</button>)

@@ -20,22 +20,24 @@ const SocialLogin = () => {
 
     const from = location?.state?.from?.pathname || '/';
 
-    if(token){
+    if (token) {
         navigate(from, { replace: true })
     }
 
 
     return (
-        <div className='container'>
-            <div className='or'>
-                <div className='or-divider'></div>
-                <div className='or-text'>or</div>
-                <div className='or-divider'></div>
+        <>
+            <div className='container'>
+                <div className='or'>
+                    <div className='or-divider'></div>
+                    <div className='or-text'>or</div>
+                    <div className='or-divider'></div>
+                </div>
+                <button onClick={() => signInWithGoogle()} className="btnGroup"><img className='social-logo' src={googleLogo} alt="" /> <span>Continue with Google</span></button> <br />
+                <button onClick={() => signInWithFacebook()} className="btnGroup"><img className='social-logo' src={facebookLogo} alt="" /> <span>Continue with Facebook</span></button> <br />
+                <button onClick={() => signInWithGithub()} className="btnGroup"><img className='social-logo' src={githubLogo} alt="" /> <span>Continue with Github</span></button>
             </div>
-            <button onClick={() => signInWithGoogle()} className="btnGroup"><img className='social-logo' src={googleLogo} alt="" /> <span>Continue with Google</span></button> <br />
-            <button onClick={() => signInWithFacebook()} className="btnGroup"><img className='social-logo' src={facebookLogo} alt="" /> <span>Continue with Facebook</span></button> <br />
-            <button onClick={() => signInWithGithub()} className="btnGroup"><img className='social-logo' src={githubLogo} alt="" /> <span>Continue with Github</span></button>
-        </div>
+        </>
     );
 };
 

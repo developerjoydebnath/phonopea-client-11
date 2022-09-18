@@ -1,6 +1,7 @@
 .phones-container{
-    margin-top: 20px;
+    padding-top: 20px;
     background-image: linear-gradient(rgb(255, 222, 161), rgb(255, 255, 255));
+    min-height: calc(100vh - 200px);
 }
 .page-btn{
     margin: 20px 10px;

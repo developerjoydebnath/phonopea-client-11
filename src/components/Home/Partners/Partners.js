@@ -63,7 +63,7 @@ const Partners = () => {
     return (
         <div>
             <div className='mt-5'>
-                <h4>Our Partners</h4>
+                <h4 className='customer-review'>Our Partners</h4>
             </div>
             <Carousel
                 additionalTransfrom={0}
@@ -81,6 +81,7 @@ const Partners = () => {
                 keyBoardControl
                 minimumTouchDrag={80}
                 pauseOnHover
+                removeArrowOnDeviceType={['mobile', 'mobile2', 'tablet', 'laptop']}
                 renderArrowsWhenDisabled={false}
                 renderButtonGroupOutside={false}
                 renderDotsOutside={false}

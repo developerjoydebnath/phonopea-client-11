@@ -24,29 +24,37 @@
     height: 35px;
     outline: none;
     padding-left: 5px;
-    border: 1px solid green;
+    border: 1px solid rgb(0, 175, 0);
     border-radius: 5px;
     margin-bottom: 10px;
-    box-shadow: 1px 1px 1px 1px rgb(1, 158, 1);
+}
+.review-input:focus{
+    border: 2px solid rgb(0, 175, 0);
+
 }
 .review-area{
     width: 100%;
     outline: none;
     height: 80px;
-    border: 1px solid green;
+    border: 1px solid rgb(0, 175, 0);
     border-radius: 5px;
     padding-left: 5px;
     margin-bottom: 10px;
-    box-shadow: 1px 1px 1px 1px rgb(0, 157, 0);
+}
+.review-area:focus{
+    border: 2px solid rgb(0, 175, 0);
 }
 .review-btn{
     background-image: linear-gradient(rgb(39, 176, 1), rgb(38, 152, 0));
     border: none;
     outline: none;
     color: white;
-    padding: 3px 6px;
+    padding: 5px 10px;
     border-radius: 5px;
+    transition: 0.2s;
 }
 .review-btn:hover{
-    background-image: linear-gradient(rgb(0, 131, 0), rgb(0, 131, 0));
+    background-image: linear-gradient(rgb(0, 181, 0), rgb(0, 182, 0));
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.432);
+    transition: 0.2s;
 }

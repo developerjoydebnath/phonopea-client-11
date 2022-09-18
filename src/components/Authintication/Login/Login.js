@@ -22,12 +22,11 @@ import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 import PageTitle from '../../Shared/PageTitle';
 import { AiFillWarning } from "react-icons/ai";
 import useToken from '../../../hooks/useToken';
+import './Login.css';
 
 function Copyright(props) {
     return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            <SocialLogin />
-        </Typography>
+        <SocialLogin />
     );
 }
 
@@ -118,10 +117,10 @@ export default function SignIn() {
     }
 
     return (
-        <>
+        <div className='login-container'>
             <ThemeProvider theme={theme}>
                 <PageTitle title='Login' />
-                <Container style={{ position: 'relative', height: '100vh' }} component="main" maxWidth="xs">
+                <Container style={{ position: 'relative', textAlign: 'center', marginBottom: '50px' }} component="main" maxWidth="xs">
                     {
                         loading &&
                         <div style={{ position: 'absolute', top: '30%', left: '40%' }}>
@@ -151,7 +150,7 @@ export default function SignIn() {
                         {
                             loginError && <span className='text-danger mt-2'><AiFillWarning className='mb-1' /> {loginError}</span>
                         }
-                        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                        <Box className='text-start' component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                             <TextField
                                 margin="normal"
                                 required
@@ -173,7 +172,7 @@ export default function SignIn() {
                                 id="password"
                                 autoComplete="current-password"
                             />
-                            <input type="checkbox" onClick={showPassword} name="showPass" id="showPass" />
+                            <input className='text-start' type="checkbox" onClick={showPassword} name="showPass" id="showPass" />
                             {checked ? <label className='ms-1 mb-1' htmlFor="showPass"> Hide password</label> : <label className='ms-1 mb-1' htmlFor="showPass"> Show password</label>}
                             <Button
                                 type="submit"
@@ -228,6 +227,6 @@ export default function SignIn() {
                     </Dialog>
                 </Container>
             </ThemeProvider>
-        </>
+        </div>
     );
 }

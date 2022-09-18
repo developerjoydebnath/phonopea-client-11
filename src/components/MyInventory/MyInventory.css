@@ -1,4 +1,5 @@
 .myInventory-container{
     background-image: linear-gradient(#c9ffb2, #c5ffff);
     padding-bottom: 20px;
+    min-height: calc(100vh - 200px);
 }

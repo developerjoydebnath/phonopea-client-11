@@ -5,4 +5,5 @@
 }
 .home-container{
     background-image: linear-gradient(#a9fdd0, #ffffff, white);
+    min-height: 100vh;
 }

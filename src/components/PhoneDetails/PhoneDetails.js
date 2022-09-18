@@ -15,7 +15,6 @@ const PhoneDetails = () => {
     const { loading } = useSearch();
     const { id } = useParams();
     const { name, brand, description, img, price, quantity, supplierName } = phone;
-    console.log(phone)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -69,7 +68,7 @@ const PhoneDetails = () => {
                             <img className="details-img" src={img} alt="" />
                         </div>
                         <div className="col-lg-6 col-md-12 col-12 d-md-flex d-lg-block d-flex justify-content-center text-lg-start text-md-center text-center">
-                            <div className="text-md-start text-start details-right">
+                            <div className="text-md-start ms-2 text-start details-right">
                                 <h2 className="mb-3">Name: {name}</h2>
                                 <h5> <FcApproval className="icon" /> Brand: {brand}</h5>
                                 <h5> <FcApproval className="icon" /> Price: {price}</h5>

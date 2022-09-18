@@ -1,5 +1,6 @@
 .phone-details-container{
     margin-bottom: 30px;
+    min-height: calc(100vh - 250px);
 }
 .details-container{
     /* margin: 0; */
@@ -40,6 +41,10 @@
     border-right: 0;
     padding: 5px;
     background-color: rgba(255, 255, 255, 0.786);
+}
+.restock-input:focus{
+    border: 2px solid rgb(0, 165, 0);
+    border-right: 0;
 }
 .restock-btn{
     /* background-color: rgb(134, 21, 21);? */

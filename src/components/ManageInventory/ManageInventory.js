@@ -6,6 +6,7 @@ import { ImBin } from "react-icons/im";
 import { FiEdit } from "react-icons/fi";
 import { FaArrowRight } from "react-icons/fa";
 import { CgDetailsMore } from "react-icons/cg";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import './ManageInventory.css';
 import { Alert, Tooltip } from '@mui/material';
 import axios from 'axios';
@@ -123,7 +124,10 @@ const ManageInventory = () => {
                                 )
                             }
                         </ListGroup>
-                        <div className='container my-5'>
+                        <div className='my-2'>
+                            <button className='btn btn-success mt-3 pe-4' onClick={() => { navigate(-1) }}> <ArrowBackIcon className='me-1 my-auto' /> Go back </button>
+                        </div>
+                        <div className='container my-2'>
                             <button onClick={handlePreviousBtn} className='next-btn'><FaAngleDoubleLeft className='mb-1' /></button>
                             {
                                 [...Array(pageCount).keys()].map(number => <button key={number} onClick={() => setPage(number)} className={page === number ? 'selected-page' : 'page-btn'}>{number + 1}</button>)

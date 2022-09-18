@@ -1,15 +1,15 @@
 import { Alert } from '@mui/material';
 import axios from 'axios';
 import React from 'react';
+import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import './AddReview.css';
 
-import './AddReview.css';
-
 const AddReview = () => {
     const [user] = useAuthState(auth);
+    const [reviewDone, setReviewDone] = useState(false);
     const userName = user?.displayName;
     const navigate = useNavigate();
 
@@ -25,6 +25,7 @@ const AddReview = () => {
         e.preventDefault();
         const name = e.target.name.value;
         const review = e.target.review.value;
+        const userEmail = user?.email;
         const newDate = new Date()
         const todayDate = newDate.getDate();
         const year = newDate.getFullYear();
@@ -32,17 +33,22 @@ const AddReview = () => {
         const monthName = monthNames[newDate.getMonth()]
         const date = `${monthName} ${todayDate},${year}`;
         const nameFirstLetter = user?.displayName.slice(0, 1)
-        const reviewObject = { name, review, date, nameFirstLetter, color }
-        console.log(reviewObject)
+        const reviewObject = { name, review, date, nameFirstLetter, color, userEmail };
 
         const { data } = await axios.post(`https://warehouse-manager-258000.herokuapp.com/addReview`, reviewObject)
 
         data?.acknowledged && e.target.reset()
+        data?.acknowledged && setReviewDone(true)
+        data?.acknowledged && setTimeout(() => {
+            setReviewDone(false)
+        }, 1500);
+
     }
 
     return (
         <div className='add-review-container'>
             <h2>Add a review</h2>
+            <span>{reviewDone && <Alert className='py-0 d-flex justify-content-center w-25 mx-auto' severity='success' >Review added</Alert>}</span>
             <div className='review-inner-div'>
                 {
                     user ?
