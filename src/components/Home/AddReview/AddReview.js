@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import './AddReview.css';
 
-const AddReview = () => {
+const AddReview = ({reviews, setReviews}) => {
     const [user] = useAuthState(auth);
     const [reviewDone, setReviewDone] = useState(false);
     const userName = user?.displayName;
@@ -26,29 +26,33 @@ const AddReview = () => {
         const name = e.target.name.value;
         const review = e.target.review.value;
         const userEmail = user?.email;
-        const newDate = new Date()
+        const newDate = new Date();
         const todayDate = newDate.getDate();
         const year = newDate.getFullYear();
         // const dayName = weekday[newDate.getDay()]
-        const monthName = monthNames[newDate.getMonth()]
+        const monthName = monthNames[newDate.getMonth()];
         const date = `${monthName} ${todayDate},${year}`;
-        const nameFirstLetter = user?.displayName.slice(0, 1)
+        const nameFirstLetter = user?.displayName.slice(0, 1);
         const reviewObject = { name, review, date, nameFirstLetter, color, userEmail };
-
-        const { data } = await axios.post(`https://warehouse-manager-258000.herokuapp.com/addReview`, reviewObject)
-
-        data?.acknowledged && e.target.reset()
-        data?.acknowledged && setReviewDone(true)
-        data?.acknowledged && setTimeout(() => {
-            setReviewDone(false)
-        }, 1500);
-
+        const previousReviews = [...reviews];
+        const { data } = await axios.post(`http://localhost:5000/addReview`, reviewObject);
+        if (data?.acknowledged) {
+            const newObject = { ...reviewObject, _id: data?.insertedId };
+            previousReviews.push(newObject);
+            console.log(previousReviews);
+            setReviews(previousReviews);
+            e.target.reset();
+            setReviewDone(true);
+            setTimeout(() => {
+                setReviewDone(false);
+            }, 1500);
+        }
     }
 
     return (
         <div className='add-review-container'>
             <h2>Add a review</h2>
-            <span>{reviewDone && <Alert className='py-0 d-flex justify-content-center w-25 mx-auto' severity='success' >Review added</Alert>}</span>
+            <span>{reviewDone && <Alert className='py-0 d-flex justify-content-center mx-auto' severity='success' >Review added</Alert>}</span>
             <div className='review-inner-div'>
                 {
                     user ?

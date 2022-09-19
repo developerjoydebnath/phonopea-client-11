@@ -16,7 +16,7 @@ const CustomerReview = () => {
         <div>
             <div className='mt-5 mb-3'>
                 <h4 className='customer-review'>Customer reviews (<small>Recent reviews</small>)</h4>
-                {deleted && <Alert severity='success' className='w-25'>Deleted.</Alert>}
+                {deleted && <Alert severity='success' className=''>Deleted.</Alert>}
             </div>
             <Carousel
                 additionalTransfrom={0}
@@ -32,7 +32,7 @@ const CustomerReview = () => {
                 infinite
                 itemClass="ps-2"
                 keyBoardControl
-                minimumTouchDrag={80}
+                minimumTouchDrag={160}
                 pauseOnHover
                 removeArrowOnDeviceType={['mobile', 'tablet']}
                 renderArrowsWhenDisabled={false}
@@ -79,7 +79,7 @@ const CustomerReview = () => {
                 }
 
             </Carousel>
-            <AddReview />
+            <AddReview reviews={reviews} setReviews={setReviews} />
         </div>
     );
 };
