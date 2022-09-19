@@ -44,7 +44,7 @@ const Review = (props) => {
     const handleDeleteReview = async () => {
         const confirm = window.confirm('Do you want to delete this review');
         if (confirm) {
-            const { data } = await axios.delete(`http://localhost:5000/deleteReview?id=${_id}&email=${user?.email}&userEmail=${userEmail}`)
+            const { data } = await axios.delete(`https://warehouse-manager-258000.herokuapp.com/deleteReview?id=${_id}&email=${user?.email}&userEmail=${userEmail}`)
             if (data?.deletedCount === 1) {
                 const matched = props?.reviews.filter(r => r._id !== _id)
                 props?.setDeleted(true);

@@ -27,7 +27,7 @@ const AddPhone = () => {
 
     const onSubmit = async (phone) => {
         const item = phone;
-        const { data } = await axios.post(`http://localhost:5000/addPhone`, item)
+        const { data } = await axios.post(`https://warehouse-manager-258000.herokuapp.com/addPhone`, item)
         data?.acknowledged && setAdded(true)
         setTimeout(() => {
             setAdded(false)

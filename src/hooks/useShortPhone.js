@@ -7,7 +7,7 @@ const useShortPhone = () => {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const fetchData = async () => {
-            const { data } = await axios.get(`http://localhost:5000/shortPhones`);
+            const { data } = await axios.get(`https://warehouse-manager-258000.herokuapp.com/shortPhones`);
             setShortPhone(data);
             data && setLoading(false);
         }

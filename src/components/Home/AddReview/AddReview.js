@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import './AddReview.css';
 
-const AddReview = ({reviews, setReviews}) => {
+const AddReview = ({ reviews, setReviews }) => {
     const [user] = useAuthState(auth);
     const [reviewDone, setReviewDone] = useState(false);
     const userName = user?.displayName;
@@ -35,7 +35,7 @@ const AddReview = ({reviews, setReviews}) => {
         const nameFirstLetter = user?.displayName.slice(0, 1);
         const reviewObject = { name, review, date, nameFirstLetter, color, userEmail };
         const previousReviews = [...reviews];
-        const { data } = await axios.post(`http://localhost:5000/addReview`, reviewObject);
+        const { data } = await axios.post(`https://warehouse-manager-258000.herokuapp.com/addReview`, reviewObject);
         if (data?.acknowledged) {
             const newObject = { ...reviewObject, _id: data?.insertedId };
             previousReviews.push(newObject);
