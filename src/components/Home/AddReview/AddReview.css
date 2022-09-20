@@ -12,6 +12,14 @@
     text-align: center;
     margin-bottom: 50px;
 }
+.review-add{
+    max-width: 500px;
+    text-align-last: center;
+    margin: 0 auto;
+    background-color: rgb(193, 246, 255);  
+    padding: 5px 0;
+    border-radius: 25px;
+}
 .review-inner-div{
     /* border: 1px solid red; */
     max-width: 500px;

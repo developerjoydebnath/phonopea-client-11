@@ -60,18 +60,33 @@ export default function SignIn() {
     useEffect(() => {
         if (error?.message === 'Firebase: Error (auth/wrong-password).') {
             setLoginError('Incorrect Password!')
+            setTimeout(() => {
+                setLoginError('')
+            }, 3000);
         }
         if (error?.message === 'Firebase: Error (auth/invalid-email).') {
             setLoginError('Invalid Email!')
+            setTimeout(() => {
+                setLoginError('')
+            }, 3000);
         }
         if (error?.message === 'Firebase: Error (auth/user-not-found).') {
             setLoginError('User Not Found!')
+            setTimeout(() => {
+                setLoginError('')
+            }, 3000);
         }
         if (resetPassError?.message === 'Firebase: Error (auth/user-not-found).') {
             setResetEmail({ value: '', error: 'User Not Found!' })
+            setTimeout(() => {
+                setResetEmail({ value: '', error: '' });
+            }, 2000);
         }
         if (resetPassError?.message === 'Firebase: Error (auth/missing-email).') {
             setResetEmail({ value: '', error: 'Email is missing!' })
+            setTimeout(() => {
+                setResetEmail({ value: '', error: '' });
+            }, 2000);
         }
     }, [error, resetPassError])
 
@@ -81,6 +96,12 @@ export default function SignIn() {
         const formData = new FormData(event.currentTarget);
         const email = formData.get('email')
         const password = formData.get('password')
+        if(password === '' && email){
+            setLoginError('Password required!')
+            setTimeout(() => {
+                setLoginError('');
+            }, 3000);
+        }
         await signInWithEmailAndPassword(email, password)
     };
 
@@ -102,6 +123,9 @@ export default function SignIn() {
         }
         else {
             setResetEmail({ value: '', error: 'Invalid Email/ Missing Email' });
+            setTimeout(() => {
+                setResetEmail({ value: '', error: '' });
+            }, 2000);
         }
     }
 

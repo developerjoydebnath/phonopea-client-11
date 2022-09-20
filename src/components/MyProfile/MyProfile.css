@@ -95,6 +95,19 @@
 .info-icon{
     cursor: pointer;
 }
+.update-input-disabled{
+    width: 250px;
+    height: 35px;
+    margin-bottom: 3px;
+    outline: none;
+    border: 1px solid rgb(175, 175, 175);
+    background-color: rgb(229, 229, 229);
+
+    /* border: 0; */
+    border-radius: 5px;
+    padding: 8px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.313);
+}
 .update-input{
     width: 250px;
     height: 35px;
@@ -105,6 +118,12 @@
     border-radius: 5px;
     padding: 8px;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.313);
+}
+.disabled-button{
+    background-color: rgba(194, 194, 194, 0.918);
+    border: none;
+    color: white;
+    border-radius: 5px;
 }
 .submit-btn{
     background-color: rgb(63, 175, 3);

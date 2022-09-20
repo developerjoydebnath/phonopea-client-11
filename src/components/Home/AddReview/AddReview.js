@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import { MdRateReview } from 'react-icons/md'
 import './AddReview.css';
 
 const AddReview = ({ reviews, setReviews }) => {
@@ -51,7 +52,7 @@ const AddReview = ({ reviews, setReviews }) => {
 
     return (
         <div className='add-review-container'>
-            <h2>Add a review</h2>
+            <h2 className='review-add'>Add a Review <MdRateReview className='mb-2 text-danger' /></h2>
             <span>{reviewDone && <Alert className='py-0 d-flex justify-content-center mx-auto' severity='success' >Review added</Alert>}</span>
             <div className='review-inner-div'>
                 {

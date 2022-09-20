@@ -5,8 +5,6 @@ import facebookLogo from '../../../images/socialIcon/facebook.png'
 import githubLogo from '../../../images/socialIcon/github.png'
 import { useLocation, useNavigate } from 'react-router-dom';
 import './SocialLogin.css';
-import { useEffect } from 'react';
-import axios from 'axios';
 import useToken from '../../../hooks/useToken';
 
 

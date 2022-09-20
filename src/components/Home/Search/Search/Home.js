@@ -10,6 +10,8 @@ import ShortPhone from '../../ShortPhone/ShortPhone';
 import PageTitle from '../../../Shared/PageTitle';
 import CustomerReview from '../../CustomerReview/CustomerReview';
 import Partners from '../../Partners/Partners';
+import ContactMe from '../../ContactMe/ContactMe';
+import AboutUs from '../../AboutUs/AboutUs';
 
 const Home = () => {
     return (
@@ -30,7 +32,9 @@ const Home = () => {
                     </Carousel>
                     <ShortPhone />
                     <Partners/>
+                    <AboutUs/>
                     <CustomerReview />
+                    <ContactMe/>
                 </div>
             </div>
         </div>

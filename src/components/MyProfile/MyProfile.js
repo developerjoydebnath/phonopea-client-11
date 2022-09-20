@@ -158,9 +158,9 @@ const MyProfile = () => {
                                         :
                                         <>
                                             <label htmlFor="email">Change Email</label><br />
-                                            <input type="email" readOnly className='me-3 update-input' placeholder='Type new email' name="email" id="" />
-                                            <input type="email" readOnly className='mb-2 update-input' placeholder='Retype new email' name="email" id="" /> <br />
-                                            <input className='submit-btn' type="submit" disabled value="Save" />
+                                            <input type="email" readOnly className='me-3 update-input-disabled' placeholder='Type new email' name="email" id="" />
+                                            <input type="email" readOnly className='mb-2 update-input-disabled' placeholder='Retype new email' name="email" id="" /> <br />
+                                            <input className='disabled-button' type="submit" disabled value="Save" />
                                         </>
                                 }
                             </form>
@@ -181,9 +181,9 @@ const MyProfile = () => {
                                         :
                                         <>
                                             <label htmlFor="password">Change Password</label><br />
-                                            <input type="password" readOnly className='me-3 update-input' placeholder='New password' name='password' />
-                                            <input type="password" readOnly className='mb-2 update-input' placeholder='Confirm password' name='password' /> <br />
-                                            <input className='submit-btn' type="submit" disabled value="Save" />
+                                            <input type="password" readOnly className='me-3 update-input-disabled' placeholder='New password' name='password' />
+                                            <input type="password" readOnly className='mb-2 update-input-disabled' placeholder='Confirm password' name='password' /> <br />
+                                            <input className='disabled-button' type="submit" disabled value="Save" />
                                         </>
                                 }
                             </form>

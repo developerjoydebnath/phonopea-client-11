@@ -58,7 +58,7 @@ const Review = (props) => {
 
     return (
         <div>
-            <Card sx={{ maxWidth: 350, border: "1px solid #e8e8e8", boxShadow: "1px 1px 10px 2px rgba(0, 0, 0, 0.198)", marginBottom: '5px', marginTop: '5px' }}>
+            <Card sx={{ maxWidth: 350, border: "1px solid #e8e8e8", boxShadow: "1px 1px 5px 1px rgba(0, 0, 0, 0.198)", marginBottom: '5px', marginTop: '5px' }}>
                 <CardHeader
                     avatar={
                         <Avatar sx={{ bgcolor: avatarColor[500] }} aria-label="recipe">
