@@ -2,8 +2,6 @@
 
 live site : https://warehouse-management-709ef.web.app/
 
-server-site: https://warehouse-manager-258000.herokuapp.com/
-
 ➊ User friendly interface.
 
 ➋ Active route, dynamic route, privet route.
