@@ -84,17 +84,17 @@ const MyInventory = () => {
                                             </div>
                                             <div>
                                                 <div className='icon-container'>
-                                                    <Tooltip onClick={() => navigate(`/phoneDetails/${item?._id}`)} title="Show Detail" placement="bottom">
-                                                        <button title='' className='see-more-btn'>
+                                                    <Tooltip  title="Show Detail" placement="top" arrow>
+                                                        <button onClick={() => navigate(`/phoneDetails/${item?._id}`)} className='see-more-btn'>
                                                             <CgDetailsMore className='see-more-icon' />
                                                         </button>
                                                     </Tooltip>
-                                                    <Tooltip title="Delete" placement="bottom">
+                                                    <Tooltip title="Delete" placement="top" arrow>
                                                         <button onClick={() => handleDeleteItem(item._id)} className='delete-btn'>
                                                             <ImBin className='delete-icon' />
                                                         </button>
                                                     </Tooltip>
-                                                    <Tooltip title="Edit" placement="bottom">
+                                                    <Tooltip title="Edit" placement="top" arrow>
                                                         <button className='edit-btn'>
                                                             <FiEdit className='edit-icon' />
                                                         </button>

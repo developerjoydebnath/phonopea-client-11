@@ -13,8 +13,8 @@ const SearchResult = (props) => {
         <div>
             <Modal scrollable {...props} aria-labelledby="contained-modal-title-vcenter">
                 <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                        Search result for <span className='text-success'>{searchText && searchText}</span>
+                    <Modal.Title id="contained-modal-title-vcenter"> <span>({searchresult?.length}) </span>
+                    Search result for <span className='text-success'>"{searchText && searchText}"</span> 
                         
                     </Modal.Title>
                 </Modal.Header>

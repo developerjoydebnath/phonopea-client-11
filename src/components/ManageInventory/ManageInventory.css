@@ -1,4 +1,8 @@
 
+.inventory-container{
+    min-height: calc(100vh - 200px);
+    background-image: linear-gradient(rgb(180, 255, 211), rgb(255, 255, 255));
+}
 .icon-container{
     width: 120px;
 }

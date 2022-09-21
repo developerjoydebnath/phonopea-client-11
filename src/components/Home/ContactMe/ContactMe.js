@@ -38,10 +38,10 @@ const ContactMe = () => {
         }
     }
     return (
-        <div>
+        <div id='contact'>
             <div className="d-flex justify-content-center align-items-center pb-3">
                 <form className="contact-form" onSubmit={sendEmail}>
-                    <div className="text-center"><h2 className='feedback'>Send Feedback <FcAbout className="text-danger mb-2" /></h2></div>
+                    <div className="text-center"><h2 className='feedback'>Contact Us <FcAbout className="text-danger mb-2" /></h2></div>
                     {
                         emailSent && <Alert severity='success'>{emailSent}</Alert>
                     }

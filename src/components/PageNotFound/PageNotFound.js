@@ -7,7 +7,9 @@ const PageNotFound = () => {
     return (
         <div className='page-not-found-container'>
             <PageTitle title='404-Page Not Found' />
-            <img width={300} className='mt-5' src={img} alt="" />
+            <h1 className='page-not-found-1 font-effect-shadow-multiple'>Oppppsss...!!!</h1>
+            <img width={300} className='mt-3' src={img} alt="" />
+            <h2 className='page-not-found-2 font-effect-shadow-multiple'>Page Not Found</h2>
         </div>
     );
 };

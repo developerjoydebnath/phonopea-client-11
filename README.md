@@ -1,5 +1,25 @@
 # Getting Started with Create React App
 
+live site : https://warehouse-management-709ef.web.app/
+
+server-site: https://warehouse-manager-258000.herokuapp.com/
+
+➊ User friendly interface.
+
+➋ Active route, dynamic route, privet route.
+
+➌ Fully responsive, optimized image.
+
+➍ Handle error and display error in login, signup and where needed, jwt added, user can only delete his/her own review.
+
+➎ Loader will active while loading, display toast.
+
+➏ Social login, dynamic signout button, display login user, reset password, short random phone shown in home page, pagination, real time add review section, add phone section, update profile system added, everything is dynamic;
+
+➐ Responsive contact us form, realistic footer.
+
+Frameworks and Libraries : emailjs, bootstrap, firebase, react-bootstrap, react-firebase-hooks, react-icons, react-loader-spinner, react-responsive-carousel, react-router, react-toastify, axios, react-helmet-async, react-hook-form, react-multi-carousel, react-responsive-carousel, 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

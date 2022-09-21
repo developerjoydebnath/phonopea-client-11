@@ -23,7 +23,7 @@ const Footer = () => {
                                 <Link className='footer-links' to='/'>Contact Us</Link>
                                 <Link className='footer-links' to='/'>FAQ</Link>
                                 <Link className='footer-links' to='/'>Cookies Policy</Link>
-                                <Link className='footer-links' to='/'>About</Link>
+                                <Link className='footer-links' to='/'>About Us</Link>
                             </div>
                             <div className='col-lg-6 col-md-6 col-12 d-flex flex-column my-2'>
                                 <h5 className='text-white'>Our Address</h5>

@@ -63,18 +63,18 @@ const PhoneDetails = () => {
                 </div>
             ) : (
                 <>
-                    <div className="details-container pt-5 row align-items-center">
+                    <div className="details-container mt-4 row align-items-center">
                         <div className="col-lg-6 col-md-12 col-12 text-lg-end text-md-center text-center">
-                            <img className="details-img" src={img} alt="" />
+                            <img className="details-img mt-3" src={img} alt="" />
                         </div>
                         <div className="col-lg-6 col-md-12 col-12 d-md-flex d-lg-block d-flex justify-content-center text-lg-start text-md-center text-center">
-                            <div className="text-md-start ms-2 text-start details-right">
-                                <h2 className="mb-3">Name: {name}</h2>
-                                <h5> <FcApproval className="icon" /> Brand: {brand}</h5>
-                                <h5> <FcApproval className="icon" /> Price: {price}</h5>
-                                <h5> <FcApproval className="icon" /> Supplier Name: {supplierName}</h5>
-                                <h5> <FcApproval className="icon" /> Quantity: {quantity}</h5>
-                                <h5 className='d-inline'><FcApproval className="icon" /> Description:</h5> <p className='d-inline'>{description}</p> <br />
+                            <div className="text-md-start ms-2 mt-3 text-start details-right">
+                                <h2 className="mb-3 font-sans-pro">Name: {name}</h2>
+                                <h5 className='font-sans-pro'> <FcApproval className="icon" /> Brand: {brand}</h5>
+                                <h5 className='font-sans-pro'> <FcApproval className="icon" /> Price: {price}</h5>
+                                <h5 className='font-sans-pro'> <FcApproval className="icon" /> Supplier Name: {supplierName}</h5>
+                                <h5 className='font-sans-pro'> <FcApproval className="icon" /> Quantity: {quantity}</h5>
+                                <h5 className='d-inline font-sans-pro'><FcApproval className="icon" /> Description:</h5> <p className='d-inline'>{description}</p> <br />
                                 {/* <button onClick={handleDelivery} className='btn btn-primary mt-3'>Delivered</button> */}
                                 <Button onClick={handleDelivery} className='me-3 mt-3' variant="contained" color="success">Delivered</Button>
                                 <Button onClick={() => navigate(-1)} className='mt-3' variant="contained" color="success">Go Back</Button>

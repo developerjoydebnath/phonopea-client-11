@@ -25,6 +25,15 @@ const ManageInventory = () => {
     const [deleted, setDeleted] = useState(false);
     let i = 1;
 
+    // console.log((page+1) * size)
+
+    // useEffect(() => {
+
+    // }, [page, size])
+    const firstSerialNo = 1 + (page * size);
+    console.log(firstSerialNo)
+    i = firstSerialNo;
+
 
     useEffect(() => {
         if (page + 1 > pageCount && page !== 0) {
@@ -72,78 +81,80 @@ const ManageInventory = () => {
     }
 
     return (
-        <div className='container'>
-            <PageTitle title='ManageInventory' />
-            {deleted && <Alert className='mt-1' severity="success">Item successfully deleted!</Alert>}
-            {
-                loading ?
-                    <div className='container' style={{ position: 'relative', height: '100vh' }}>
-                        <div style={{ position: 'absolute', top: '30%', left: '40%' }}>
-                            <Audio className='audio'
-                                height="100"
-                                width="100"
-                                color='red'
-                                ariaLabel='loading'
-                            />
-                        </div>
-                    </div> :
-                    <div className="mt-3 mb-5">
-                        <div className='d-flex justify-content-between'>
-                            <Link to="/addPhone" className='btn btn-success mb-3'>Add New Item <HiOutlinePlusSm /> </Link>
-                            <Link to="/myInventory" className='btn btn-success mb-3'>My Inventory <FaArrowRight /> </Link>
-                        </div>
-                        <ListGroup>
-                            {
-                                phones.map(phone =>
-                                    <ListGroup.Item key={phone._id}>
-                                        <div className='d-flex justify-content-between'>
-                                            <div>
-                                                {i++}.  <Link className='list-phone-name' to={`/phoneDetails/${phone?._id}`}>{phone?.name}</Link>
-                                            </div>
-                                            <div>
-                                                <div className='icon-container'>
-                                                    <Tooltip onClick={() => navigate(`/phoneDetails/${phone?._id}`)} title="Show Detail" placement="bottom">
-                                                        <button title='' className='see-more-btn'>
-                                                            <CgDetailsMore className='see-more-icon' />
-                                                        </button>
-                                                    </Tooltip>
-                                                    <Tooltip title="Delete" placement="bottom">
-                                                        <button onClick={() => handleDeleteItem(phone._id)} className='delete-btn'>
-                                                            <ImBin className='delete-icon' />
-                                                        </button>
-                                                    </Tooltip>
-                                                    <Tooltip title="Edit" placement="bottom">
-                                                        <button className='edit-btn'>
-                                                            <FiEdit className='edit-icon' />
-                                                        </button>
-                                                    </Tooltip>
+        <div className='inventory-container'>
+            <div className='container'>
+                <PageTitle title='ManageInventory' />
+                {deleted && <Alert className='mt-1' severity="success">Item successfully deleted!</Alert>}
+                {
+                    loading ?
+                        <div className='container' style={{ position: 'relative', height: '100vh' }}>
+                            <div style={{ position: 'absolute', top: '30%', left: '40%' }}>
+                                <Audio className='audio'
+                                    height="100"
+                                    width="100"
+                                    color='red'
+                                    ariaLabel='loading'
+                                />
+                            </div>
+                        </div> :
+                        <div className="pt-3 pb-5">
+                            <div className='d-flex justify-content-between'>
+                                <Link to="/addPhone" className='btn btn-success mb-3'>Add New Item <HiOutlinePlusSm /> </Link>
+                                <Link to="/myInventory" className='btn btn-success mb-3'>My Inventory <FaArrowRight /> </Link>
+                            </div>
+                            <ListGroup>
+                                {
+                                    phones.map(phone =>
+                                        <ListGroup.Item key={phone._id}>
+                                            <div className='d-flex justify-content-between'>
+                                                <div>
+                                                    {i++}.  <Link className='list-phone-name' to={`/phoneDetails/${phone?._id}`}>{phone?.name}</Link>
+                                                </div>
+                                                <div>
+                                                    <div className='icon-container'>
+                                                        <Tooltip  title="Show Detail" placement="top" arrow>
+                                                            <button onClick={() => navigate(`/phoneDetails/${phone?._id}`)} title='' className='see-more-btn'>
+                                                                <CgDetailsMore className='see-more-icon' />
+                                                            </button>
+                                                        </Tooltip>
+                                                        <Tooltip title="Delete" placement="top" arrow>
+                                                            <button onClick={() => handleDeleteItem(phone._id)} className='delete-btn'>
+                                                                <ImBin className='delete-icon' />
+                                                            </button>
+                                                        </Tooltip>
+                                                        <Tooltip title="Edit" placement="top" arrow>
+                                                            <button className='edit-btn'>
+                                                                <FiEdit className='edit-icon' />
+                                                            </button>
+                                                        </Tooltip>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </ListGroup.Item>
-                                )
-                            }
-                        </ListGroup>
-                        <div className='my-2'>
-                            <button className='btn btn-success mt-3 pe-4' onClick={() => { navigate(-1) }}> <ArrowBackIcon className='me-1 my-auto' /> Go back </button>
-                        </div>
-                        <div className='container my-2'>
-                            <button onClick={handlePreviousBtn} className='next-btn'><FaAngleDoubleLeft className='mb-1' /></button>
-                            {
-                                [...Array(pageCount).keys()].map(number => <button key={number} onClick={() => setPage(number)} className={page === number ? 'selected-page' : 'page-btn'}>{number + 1}</button>)
-                            }
-                            <button onClick={handleNextBtn} className='next-btn'><FaAngleDoubleRight className='mb-1' /></button>
+                                        </ListGroup.Item>
+                                    )
+                                }
+                            </ListGroup>
+                            <div className='my-2'>
+                                <button className='btn btn-success mt-3 pe-4' onClick={() => { navigate(-1) }}> <ArrowBackIcon className='me-1 my-auto' /> Go back </button>
+                            </div>
+                            <div className='container my-2'>
+                                <button onClick={handlePreviousBtn} className='next-btn'><FaAngleDoubleLeft className='mb-1' /></button>
+                                {
+                                    [...Array(pageCount).keys()].map(number => <button key={number} onClick={() => setPage(number)} className={page === number ? 'selected-page' : 'page-btn'}>{number + 1}</button>)
+                                }
+                                <button onClick={handleNextBtn} className='next-btn'><FaAngleDoubleRight className='mb-1' /></button>
 
-                            {
-                                <select className='ms-3 page-size bg-white' onChange={e => setSize(e.target.value)}>
-                                    <option value="15" selected>15</option>
-                                    <option value="20">20</option>
-                                </select>
-                            }
-                            <span className='products-per-page'> - products per page</span>
+                                {
+                                    <select className='ms-3 page-size bg-white' onChange={e => setSize(e.target.value)}>
+                                        <option value="15" selected>15</option>
+                                        <option value="20">20</option>
+                                    </select>
+                                }
+                                <span className='products-per-page'> - products per page</span>
+                            </div>
                         </div>
-                    </div>
-            }
+                }
+            </div>
         </div>
     );
 };

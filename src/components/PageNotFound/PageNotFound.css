@@ -1,4 +1,15 @@
 .page-not-found-container{
     min-height: calc(100vh - 250px);
     text-align: center;
+    background-image: linear-gradient(rgb(159, 249, 255), rgb(230, 168, 255), rgb(248, 255, 170));
+}
+.page-not-found-1{
+    padding-top: 20px;
+    font-family: Dangrek, serif;
+    font-size: 40px;
+}
+.page-not-found-2{
+    margin-top: 20px;
+    font-family: Dangrek, serif;
+    font-size: 30px;
 }

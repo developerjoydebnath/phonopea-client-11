@@ -7,6 +7,9 @@
     margin: 20px 10px;
     border: none;
     background: rgb(255, 255, 255);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
 }
 .selected-page{
     background-color: rgba(131, 183, 53, 1);

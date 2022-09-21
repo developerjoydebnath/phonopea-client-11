@@ -22,8 +22,7 @@ const MyProfile = () => {
     const [photoUrlError, setPhotoUrlError] = useState('');
     const [updateProfile, updating3, error3] = useUpdateProfile(auth);
     const [sendEmailVerification, sending, error] = useSendEmailVerification(auth);
-    const [open, setOpen] = useState(false);
-    console.log(open)
+    const [openInfo, setOpenInfo] = useState(false);
 
 
     const handleUpdateEmail = async (e) => {
@@ -103,9 +102,9 @@ const MyProfile = () => {
     }
 
     const handleInfoBtn = () => {
-        setOpen(true);
+        setOpenInfo(true);
         setTimeout(() => {
-            setOpen(false)
+            setOpenInfo(false)
         }, 4000);
     };
     return (
@@ -140,7 +139,7 @@ const MyProfile = () => {
 
                             <form onSubmit={submitPhotoUrl} className='mb-2'>
                                 {photoUrlError && <Alert severity="warning">{photoUrlError}</Alert>}
-                                <label htmlFor="photoURL" className={open ? 'modal-open' : ''}>Update Image <BsInfoCircleFill className='info-icon' onClick={handleInfoBtn} /></label> <br />
+                                <label htmlFor="photoURL" className={openInfo ? 'modal-open' : ''}>Update Image <BsInfoCircleFill className='info-icon' onClick={handleInfoBtn} /></label> <br />
                                 <input onBlur={(e) => setPhotoURL(e.target.value)} className='me-3 mb-2 update-input' type="text" placeholder='give your photoUrl' name="photoUrl" id="" /> <br />
                                 <input className='submit-btn' type="submit" value="Save" />
                             </form>

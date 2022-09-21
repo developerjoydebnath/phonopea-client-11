@@ -12,6 +12,7 @@ import CustomerReview from '../../CustomerReview/CustomerReview';
 import Partners from '../../Partners/Partners';
 import ContactMe from '../../ContactMe/ContactMe';
 import AboutUs from '../../AboutUs/AboutUs';
+import FAQ from '../../../FAQ/FAQ';
 
 const Home = () => {
     return (
@@ -35,6 +36,7 @@ const Home = () => {
                     <AboutUs/>
                     <CustomerReview />
                     <ContactMe/>
+                    <FAQ/>
                 </div>
             </div>
         </div>

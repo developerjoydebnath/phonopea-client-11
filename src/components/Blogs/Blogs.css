@@ -1,0 +1,15 @@
+.blogs-container{
+    background-image: linear-gradient(rgb(255, 220, 220), rgb(217, 255, 205));
+    min-height: calc(100vh - 230px);
+}
+.questions{
+    font-size: 30px;
+    font-family: 'Dangrek', serif;
+}
+.answers{
+    font-size: 18px;
+    font-family: 'IBM Plex Serif', serif;
+    word-spacing: 2px;
+    margin-bottom: 0;
+    padding-bottom: 15px;
+}
